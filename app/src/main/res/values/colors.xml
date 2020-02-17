@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#fff</color>
+    <color name="creatX">#ffa949</color>
+    <color name="software">#000c3E</color>
+    <color name="url">#476678</color>
+
+    <color name="logo_blue">#45bccc</color>
+    <color name="logo_gray">#353e4a</color>
+
+    <color name="card_gray">#f7f7f7</color>
+    <color name="info_gray">#50555b</color>
+</resources>
