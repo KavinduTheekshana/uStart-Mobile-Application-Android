@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">uStart</string>
 
-    <string name="forgot_password">Forgot Your Password</string>
+    <string name="submit">Submit</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_in_text">Sign in and Continue to uStart</string>
+    <string name="enter_user_name">Enter User Name</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_passowrd">Confirm Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="Back_to">Back to </string>
+    <string name="login">Login</string>
+
+    <string name="forgot_password_title">Did someone forgot their password?</string>
+    <string name="thats_ok">"That's ok..."</string>
+    <string name="forgot_password_text">"Just enter the email address you've used to register with us and we will send you a reset link!"</string>
+
+    <string name="reset_your_password">Reset Your Password?</string>
+    <string name="reset_your_password_title">Please Enter New Password and Continue and \nafter that login to uStart</string>
+    <string name="textview">TextView</string>
 </resources>

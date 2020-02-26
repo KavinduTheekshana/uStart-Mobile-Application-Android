@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ustart">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,26 +11,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".LoginActivity"
+            android:name=".ScannerActivity"
             android:theme="@style/AppThemeMaterial">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        </activity>
+        <activity
+            android:name=".MainDashboardActivity"
+            android:theme="@style/AppThemeMaterial">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:theme="@style/AppThemeMaterial">
+
+        </activity>
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:theme="@style/AppThemeMaterial" >
+
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppThemeMaterial" >
 
         </activity>
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/AppThemeFullScreen">
+            android:theme="@style/AppThemeFullScreen" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
