@@ -1,19 +1,42 @@
 package com.example.ustart;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
 public class MainDashboardActivity extends AppCompatActivity {
 
+    private CardView ScanQrCode,UserProfile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dashboard);
+
+        ScanQrCode = (CardView) findViewById(R.id.btnScanQrCode);
+        UserProfile = (CardView) findViewById(R.id.btnUserProfile);
+
+        ScanQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScanQrCodeActivity();
+            }
+        });
+
+        UserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserProfileActivity();
+            }
+        });
 
         Thread t = new Thread(){
             @Override
@@ -39,5 +62,21 @@ public class MainDashboardActivity extends AppCompatActivity {
 
         };
         t.start();
+
+
+
+
     }
+
+
+    private void ScanQrCodeActivity() {
+        Intent intent = new Intent(this, ScannerActivity.class);
+        startActivity(intent);
+    }
+
+    private void UserProfileActivity() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
 }

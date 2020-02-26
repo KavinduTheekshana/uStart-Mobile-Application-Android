@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profilebackground"
+    android:orientation="vertical"
+    android:baselineAligned="false"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/mtrl_card_spacing"
+            android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:layout_marginRight="@dimen/mtrl_card_spacing">
+
+            <ImageView
+                android:id="@+id/btnback"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_left_arrow"
+                android:padding="10dp"></ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/mtrl_card_spacing"
+            android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:layout_marginRight="@dimen/mtrl_card_spacing"
+            android:gravity="right"
+
+>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_wheel"
+                android:scaleType="fitEnd"
+                android:padding="10dp"></ImageView>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:elevation="2dp"
+        app:cardElevation="2dp"
+        app:cardMaxElevation="2dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp"
+        app:cardCornerRadius="50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="1dp"
+            android:src="@drawable/profile"></ImageView>
+
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardMaxElevation="1dp"
+        app:cardElevation="1dp"
+        android:elevation="1dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="-50dp"
+        android:background="@color/white"
+        android:minHeight="160dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/software"
+                android:textSize="20dp"
+                android:text="Kavindu Theekshana"
+                android:textAlignment="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_light"
+                android:textColor="@color/maskColor"
+                android:textSize="15dp"
+                android:text="( Sels Rep )"
+                android:textAlignment="center">
+            </TextView>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:baselineAlignBottom="false"
+                    android:src="@drawable/ic_shop">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/raleway_bold"
+                    android:textColor="@color/silver"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:text="25">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/raleway_light"
+                    android:textColor="@color/silver"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Shops Avilable For You">
+                </TextView>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
+
+
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="15dp"
+    android:fillViewport="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:elevation="0dp"
+            app:cardElevation="1dp"
+            android:padding="15dp"
+            app:cardUseCompatPadding="true">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:baselineAlignBottom="false"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/ic_address"></ImageView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_medium"
+                        android:text="Address"></TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="No 95,Theekshana Wakamulla , Hakuruwela"
+                        android:textColor="@color/software"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:elevation="0dp"
+            app:cardElevation="1dp"
+            android:padding="15dp"
+            app:cardUseCompatPadding="true">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:baselineAlignBottom="false"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/ic_email">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_medium"
+                        android:text="Email"></TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="kavindutheekshana@gmail.com"
+                        android:textColor="@color/software"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:elevation="0dp"
+            app:cardElevation="1dp"
+            android:padding="15dp"
+            app:cardUseCompatPadding="true">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:baselineAlignBottom="false"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/ic_phone">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_medium"
+                        android:text="Telephone"></TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="071 542 14 23"
+                        android:textColor="@color/software"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:elevation="0dp"
+            app:cardElevation="1dp"
+            android:padding="15dp"
+            app:cardUseCompatPadding="true">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:baselineAlignBottom="false"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/ic_calendar">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_medium"
+                        android:text="Joined Date"></TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="2019-05-21"
+                        android:textColor="@color/software"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+</androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

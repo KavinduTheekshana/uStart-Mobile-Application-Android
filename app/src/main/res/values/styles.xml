@@ -17,4 +17,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="PopupOverlay" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/logo_blue</item>
+        <item name="colorPrimaryDark">@color/logo_blue</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

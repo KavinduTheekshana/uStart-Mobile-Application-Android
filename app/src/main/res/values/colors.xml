@@ -21,4 +21,8 @@
     <color name="card_purple">#a90bf5</color>
 
     <color name="maskColor">#77000000</color>
+    <color name="black">#000</color>
+    <color name="silver">#0c1419</color>
+
+    <color name="transparent">#00000000</color>
 </resources>
