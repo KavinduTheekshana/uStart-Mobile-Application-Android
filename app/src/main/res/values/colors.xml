@@ -23,6 +23,8 @@
     <color name="maskColor">#77000000</color>
     <color name="black">#000</color>
     <color name="silver">#0c1419</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="lightgray">#f0f1f6</color>
 
     <color name="transparent">#00000000</color>
 </resources>

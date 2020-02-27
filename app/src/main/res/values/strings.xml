@@ -20,4 +20,8 @@
     <string name="reset_your_password">Reset Your Password?</string>
     <string name="reset_your_password_title">Please Enter New Password and Continue and \nafter that login to uStart</string>
     <string name="textview">TextView</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profilebackground"
+    android:background="@color/lightgray"
     android:orientation="vertical"
     android:baselineAligned="false"
     tools:context=".ProfileActivity">
@@ -29,7 +29,32 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitStart"
                 android:src="@drawable/ic_left_arrow"
+                android:tint="@color/logo_blue"
                 android:padding="10dp"></ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/mtrl_card_spacing"
+            android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:layout_marginRight="@dimen/mtrl_card_spacing">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:text="User Profile"
+                android:textColor="@color/silver"
+                android:textSize="25dp"
+                android:textAlignment="center">
+
+            </TextView>
+
+
 
         </LinearLayout>
 
@@ -49,6 +74,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_wheel"
                 android:scaleType="fitEnd"
+                android:tint="@color/logo_blue"
                 android:padding="10dp"></ImageView>
 
         </LinearLayout>
