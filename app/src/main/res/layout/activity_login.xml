@@ -90,7 +90,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/material_button"
+            android:id="@+id/btnLogin"
             android:clickable="true"
             android:background="@color/logo_blue"
             android:layout_width="match_parent"
@@ -99,6 +99,7 @@
 
 
         <TextView
+            android:id="@+id/btnForgotPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

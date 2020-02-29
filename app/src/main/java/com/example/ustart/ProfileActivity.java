@@ -4,13 +4,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 public class ProfileActivity extends AppCompatActivity {
-    private ImageView BackButton;
+    private ImageView BackButton,EditButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,8 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         BackButton = (ImageView) findViewById(R.id.btnback);
+        EditButton = (ImageView) findViewById(R.id.btnEdit);
+
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,6 +28,18 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        EditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditUserProfileActivity();
+            }
+        });
+
+    }
+
+    private void EditUserProfileActivity() {
+        Intent intent = new Intent(this, EditProfileActivity.class);
+        startActivity(intent);
     }
 
 
@@ -36,4 +51,12 @@ public class ProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+
+
+
+
 }
+
+
+

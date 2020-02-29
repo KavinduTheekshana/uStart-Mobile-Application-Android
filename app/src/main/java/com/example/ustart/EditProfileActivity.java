@@ -4,18 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
-public class ResetPasswordActivity extends AppCompatActivity {
-    private TextView BackButton;
+public class EditProfileActivity extends AppCompatActivity {
+    private ImageView BackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reset_password);
+        setContentView(R.layout.activity_edit_profile);
 
-        BackButton = (TextView) findViewById(R.id.btnBack);
-
+        BackButton = (ImageView) findViewById(R.id.btnback);
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,6 +22,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void goToBack(View view){
         onBackPressed();
@@ -32,4 +32,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+
 }
+
