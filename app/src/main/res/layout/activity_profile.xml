@@ -132,22 +132,24 @@
             android:layout_marginTop="60dp">
 
             <TextView
+                android:id="@+id/profile_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_bold"
                 android:textColor="@color/software"
                 android:textSize="20dp"
-                android:text="Kavindu Theekshana"
+                android:text="@string/username"
                 android:textAlignment="center">
             </TextView>
 
             <TextView
+                android:id="@+id/profile_user_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_light"
                 android:textColor="@color/maskColor"
                 android:textSize="15dp"
-                android:text="( Sels Rep )"
+                android:text="@string/usertype"
                 android:textAlignment="center">
             </TextView>
 
@@ -268,13 +270,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_medium"
-                        android:text="Address"></TextView>
+                        android:text="@string/address"></TextView>
 
                     <TextView
+                        android:id="@+id/profile_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
-                        android:text="No 95,Theekshana Wakamulla , Hakuruwela"
+                        android:text="@string/address"
                         android:textColor="@color/software"></TextView>
 
                 </LinearLayout>
@@ -339,13 +342,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_medium"
-                        android:text="Email"></TextView>
+                        android:text="@string/email"></TextView>
 
                     <TextView
+                        android:id="@+id/profile_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
-                        android:text="kavindutheekshana@gmail.com"
+                        android:text="@string/email"
                         android:textColor="@color/software"></TextView>
 
                 </LinearLayout>
@@ -410,13 +414,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_medium"
-                        android:text="Telephone"></TextView>
+                        android:text="@string/telephone"></TextView>
 
                     <TextView
+                        android:id="@+id/profile_telephone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
-                        android:text="071 542 14 23"
+                        android:text="@string/telephone"
                         android:textColor="@color/software"></TextView>
 
                 </LinearLayout>
@@ -481,13 +486,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_medium"
-                        android:text="Joined Date"></TextView>
+                        android:text="@string/joineddate"></TextView>
 
                     <TextView
+                        android:id="@+id/profile_joined_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/raleway_bold"
-                        android:text="2019-05-21"
+                        android:text="@string/joineddate"
                         android:textColor="@color/software"></TextView>
 
                 </LinearLayout>
@@ -503,6 +509,84 @@
 
 
         </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:elevation="0dp"
+            app:cardElevation="1dp"
+            android:padding="15dp"
+            android:clickable="true"
+            android:backgroundTint="@color/logout"
+            app:cardUseCompatPadding="true">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:baselineAlignBottom="false"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/ic_exit">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+
+
+                    <TextView
+                        android:id="@+id/profile_joinedsdfsf_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="@string/logout"
+                        android:textColor="@color/white"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
 
 
 

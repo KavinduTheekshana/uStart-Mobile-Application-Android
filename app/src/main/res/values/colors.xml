@@ -27,4 +27,5 @@
     <color name="lightgray">#f0f1f6</color>
 
     <color name="transparent">#00000000</color>
+    <color name="logout">#D33F49</color>
 </resources>

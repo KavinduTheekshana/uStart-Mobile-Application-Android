@@ -28,9 +28,9 @@
     <TextView
         android:id="@+id/resultsOfQr"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
         android:textAlignment="center"
         android:textColor="#FFEE58"
         android:textSize="18sp"
@@ -38,7 +38,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scannerView"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79" />
+
+    <Button
+        android:id="@+id/btndone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="32dp"
+        android:text="Done"
+        android:padding="15dp"
+
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@id/scannerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/resultsOfQr"
+        app:layout_constraintVertical_bias="0.6">
+
+    </Button>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

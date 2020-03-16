@@ -24,4 +24,13 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
+    <string name="username">User Name</string>
+    <string name="usertype">(User Type)</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="telephone">Telephone</string>
+    <string name="joineddate">Joined Date</string>
+    <string name="logout">Log Out</string>
 </resources>
