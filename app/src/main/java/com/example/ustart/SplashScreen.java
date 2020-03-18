@@ -20,7 +20,7 @@ import com.example.ustart.Common.Stables;
 import org.json.JSONObject;
 
 public class SplashScreen extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT=2000;
+    private static int SPLASH_TIME_OUT=200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,15 @@ public class SplashScreen extends AppCompatActivity {
                                                 Intent homeIntent = new Intent(SplashScreen.this,CustomerDashboardActivity.class);
                                                 startActivity(homeIntent);
                                                 finish();
+                                            }else if(jsonObject.getString("code").equals("3")){
+                                                //blocked user
+                                                Toast.makeText(SplashScreen.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                                                Intent homeIntent = new Intent(SplashScreen.this,LoginActivity.class);
+                                                startActivity(homeIntent);
+                                                finish();
+
+
                                             }
                                             else{
                                                 Intent homeIntent = new Intent(SplashScreen.this,LoginActivity.class);

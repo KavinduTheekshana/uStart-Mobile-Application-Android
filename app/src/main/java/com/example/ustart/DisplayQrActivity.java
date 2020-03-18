@@ -2,6 +2,7 @@ package com.example.ustart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -39,7 +40,8 @@ public class DisplayQrActivity extends AppCompatActivity {
                 long date = System.currentTimeMillis();
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 String dateString = sdf.format(date);
-                String userID = "1";
+                SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+                String userID = sharedPreferences.getString("userid","0");
 
                 String printQR = dateString + " - " + userID;
 

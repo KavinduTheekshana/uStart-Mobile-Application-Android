@@ -106,9 +106,11 @@
         app:cardCornerRadius="50dp">
 
         <ImageView
+            android:id="@+id/profile_profile_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="1dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/profile"></ImageView>
 
     </com.google.android.material.card.MaterialCardView>
@@ -155,6 +157,7 @@
 
 
             <LinearLayout
+                android:id="@+id/numberOfShops"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -516,7 +519,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btnLogOut"
+            android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"

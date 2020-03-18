@@ -29,8 +29,10 @@
             app:cardCornerRadius="40dp">
 
             <ImageView
+                android:id="@+id/main_dashboard_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/profile"></ImageView>
 
         </com.google.android.material.card.MaterialCardView>

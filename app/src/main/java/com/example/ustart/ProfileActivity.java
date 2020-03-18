@@ -4,13 +4,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +25,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ustart.Common.Stables;
+import com.google.android.material.card.MaterialCardView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 public class ProfileActivity extends AppCompatActivity {
-    private ImageView BackButton,EditButton;
+    private ImageView BackButton,EditButton,profile_profile_image;
     private TextView profile_username,profile_user_type,profile_address,profile_email,profile_telephone,profile_joined_date;
-    private CalendarView btnLogOut;
+    private MaterialCardView btnLogout;
+    private LinearLayout numberOfShops;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         BackButton = (ImageView) findViewById(R.id.btnback);
         EditButton = (ImageView) findViewById(R.id.btnEdit);
+        profile_profile_image = (ImageView) findViewById(R.id.profile_profile_image);
+
+
+        numberOfShops = findViewById(R.id.numberOfShops);
+
 
         profile_username =  findViewById(R.id.profile_username);
         profile_user_type =  findViewById(R.id.profile_user_type);
@@ -44,10 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
         profile_telephone =  findViewById(R.id.profile_telephone);
         profile_joined_date =  findViewById(R.id.profile_joined_date);
 
-        btnLogOut = findViewById(R.id.btnLogOut);
-
-
-
+        btnLogout = findViewById(R.id.btnLogout);
 
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
                 EditUserProfileActivity();
             }
         });
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LogOut();
@@ -92,10 +102,20 @@ public class ProfileActivity extends AppCompatActivity {
                                     }else if(userObj.getString("user_type")=="2"){
                                         profile_user_type.setText("(Customer)");
                                     }
+
+                                    if (userObj.getString("user_type")=="1"){
+                                        numberOfShops.setVisibility(View.VISIBLE);
+                                    }else if(userObj.getString("user_type")=="2"){
+                                        numberOfShops.setVisibility(View.INVISIBLE);
+                                    }
+
                                     profile_address.setText(userObj.getString("address"));
                                     profile_email.setText(userObj.getString("email"));
                                     profile_telephone.setText(userObj.getString("telephone"));
                                     profile_joined_date.setText(userObj.getString("joined_date"));
+
+
+                                    Picasso.get().load(Stables.baseUrl+ userObj.getString("profile_pic")).into(profile_profile_image);
 
                                 }else{
                                     Intent homeIntent = new Intent(ProfileActivity.this,LoginActivity.class);
@@ -124,12 +144,13 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void LogOut() {
-//        SharedPreferences.Editor editor = user.edit();
-//        editor.clear();
-//        editor.commit();
-//        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-//        startActivity(intent);
-//        finish();
+        SharedPreferences preferences =getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void EditUserProfileActivity() {

@@ -4,16 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.ustart.Common.Stables;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 
 public class MainDashboardActivity extends AppCompatActivity {
 
     private CardView ScanQrCode,UserProfile,ProductList;
+    private ImageView main_dashboard_profile_image;
 
 
     @Override
@@ -21,9 +36,13 @@ public class MainDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dashboard);
 
+
+
         ScanQrCode = (CardView) findViewById(R.id.btnScanQrCode);
         UserProfile = (CardView) findViewById(R.id.btnUserProfile);
         ProductList = (CardView) findViewById(R.id.btnProductList);
+
+        main_dashboard_profile_image = (ImageView) findViewById(R.id.main_dashboard_profile_image);
 
         ScanQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +62,36 @@ public class MainDashboardActivity extends AppCompatActivity {
                 ProductListActivity();
             }
         });
+
+
+
+        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        RequestQueue requestQueue= Volley.newRequestQueue(MainDashboardActivity.this);
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().getProfileDetails(sharedPreferences.getString("userid","0")), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //hide loading
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONObject userObj=jsonObject.getJSONObject("user");
+                    Picasso.get().load(Stables.baseUrl+ userObj.getString("profile_pic")).into(main_dashboard_profile_image);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //hide loading
+                Intent homeIntent = new Intent(MainDashboardActivity.this,LoginActivity.class);
+                startActivity(homeIntent);
+                finish();
+            }
+        });
+        requestQueue.add(stringRequest);
+
+
 
         Thread t = new Thread(){
             @Override
@@ -68,7 +117,6 @@ public class MainDashboardActivity extends AppCompatActivity {
 
         };
         t.start();
-
 
 
 
