@@ -78,12 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                     //hide loading
                     try {
                         JSONObject jsonObject=new JSONObject(response);
-                        JSONObject userObj=jsonObject.getJSONObject("user");
-                        if(jsonObject.getString("code").equals("1")){
 
+                        if(jsonObject.getString("code").equals("1")){
                             Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
 
-
+                            JSONObject userObj=jsonObject.getJSONObject("user");
                             SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("userid",userObj.getString("id"));
@@ -96,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                         }else if(jsonObject.getString("code").equals("2")){
                             Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
 
-
+                            JSONObject userObj=jsonObject.getJSONObject("user");
                             SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("userid",userObj.getString("id"));
@@ -105,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(LoginActivity.this, CustomerDashboardActivity.class);
                             startActivity(intent);
+                        }else if(jsonObject.getString("code").equals("3")){
+                            Toast.makeText(LoginActivity.this, "Your Blocked", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
@@ -112,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                     }catch(Exception e){
                         e.printStackTrace();
                     }
-
                 }
             }, new Response.ErrorListener(){
 
@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
             requestQueue.add(stringRequest);
         }else {
-            Toast.makeText(this, "Pelase enter username and password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
 //            TextViewCompat.setTextAppearance(username,R.style.);
         }
     }

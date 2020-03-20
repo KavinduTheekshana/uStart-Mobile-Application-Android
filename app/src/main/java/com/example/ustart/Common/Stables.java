@@ -1,7 +1,7 @@
 package com.example.ustart.Common;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.102:8000/";
+    public static String baseUrl="http://192.168.8.101:8000/";
     private String loginController=baseUrl+"api/mobilelogin";
 
     public String getLoginController(String username,String password){

@@ -3,10 +3,10 @@ package com.example.ustart.models;
 public class Products {
     private String priductName,ProductPrice,productImage;
 
-    public Products(String priductName, String productPrice, String productImage) {
+    public Products(String priductName, String productPrice) {
         this.priductName = priductName;
         ProductPrice = productPrice;
-        this.productImage = productImage;
+
     }
 
     public String getPriductName() {
@@ -17,7 +17,4 @@ public class Products {
         return ProductPrice;
     }
 
-    public String getProductImage() {
-        return productImage;
-    }
 }
