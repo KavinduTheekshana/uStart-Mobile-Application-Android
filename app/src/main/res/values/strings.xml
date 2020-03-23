@@ -33,4 +33,11 @@
     <string name="telephone">Telephone</string>
     <string name="joineddate">Joined Date</string>
     <string name="logout">Log Out</string>
+
+
+    <string name="current_password_title">Did you want change your password?</string>
+    <string name="current_password_text">"Just enter the current password you've used to login with us and continue,after that You can enter new password!"</string>
+    <string name="enter_current_password">Enter Current Password</string>
+    <string name="Update_your_password">Update Your Password?</string>
+    <string name="update_password">Update Password</string>
 </resources>

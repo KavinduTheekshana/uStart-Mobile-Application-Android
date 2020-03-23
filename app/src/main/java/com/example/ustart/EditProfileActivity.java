@@ -35,7 +35,7 @@ import jp.wasabeef.picasso.transformations.BlurTransformation;
 import jp.wasabeef.picasso.transformations.gpu.BrightnessFilterTransformation;
 
 public class EditProfileActivity extends AppCompatActivity {
-    private ImageView BackButton,edit_profile_profile_image,blurImageView;
+    private ImageView BackButton,edit_profile_profile_image,blurImageView,edit_profile_password;
     private TextInputEditText edit_profile_user_name,edit_profile_telephone,edit_profile_address,
             edit_profile_province,edit_profile_joined_date,edit_profile_district,edit_profile_city,
             edit_profile_shop_name;
@@ -52,6 +52,7 @@ public class EditProfileActivity extends AppCompatActivity {
         progressDialog=new Stables().showLoading(this);
 
         BackButton = (ImageView) findViewById(R.id.edit_profile_btnback);
+        edit_profile_password = (ImageView) findViewById(R.id.edit_profile_password);
         blurImageView = (ImageView) findViewById(R.id.BlurImageView);
 
         btn_edit_profile_update = findViewById(R.id.btn_edit_profile_update);
@@ -78,6 +79,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 updateProfile();
             }
         });
+        edit_profile_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePassword();
+            }
+        });
 
 
         getProfileDetails();
@@ -86,6 +93,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void updatePassword() {
+        Intent homeIntent = new Intent(EditProfileActivity.this,CurrentPasswordActivity.class);
+        startActivity(homeIntent);
+        finish();
     }
 
     private void getProfileDetails(){

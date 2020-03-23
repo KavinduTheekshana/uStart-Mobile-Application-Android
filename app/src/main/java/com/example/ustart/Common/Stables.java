@@ -3,6 +3,7 @@ package com.example.ustart.Common;
 import android.app.ProgressDialog;
 import android.content.Context;
 
+import com.android.volley.Response;
 import com.example.ustart.ProfileActivity;
 
 import org.json.JSONObject;
@@ -10,11 +11,21 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.101:8000/";
+    public static String baseUrl="http://192.168.1.100:8000/";
     private String loginController=baseUrl+"api/mobilelogin";
+    private String currentPassword=baseUrl+"api/currentPassword";
+    private String UpdatePasswordController=baseUrl+"api/updatePasswordMobile";
 
     public String getLoginController(String username,String password){
         return loginController+"?username="+username+"&password="+password;
+    }
+
+    public String UpdatePasswordController(String uid,String password,String confirm_password){
+        return UpdatePasswordController+"?uid="+uid+"&password="+password+"&confirm_password="+confirm_password;
+    }
+
+    public String getCurrentPassword(String uid,String password){
+        return currentPassword+"?uid="+uid+"&password="+password;
     }
 
     public String getCheckLoginController(String id){
@@ -44,4 +55,6 @@ public class Stables {
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
     }
+
+
 }

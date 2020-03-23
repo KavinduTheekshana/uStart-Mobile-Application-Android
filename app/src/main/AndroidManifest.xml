@@ -12,16 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".DisplayQrActivity"
-            android:theme="@style/AppThemeMaterial">
+            android:name=".CurrentPasswordActivity"
+            android:theme="@style/AppThemeMaterial" >
 
         </activity>
         <activity
+            android:name=".UpdatePasswordActivity"
+            android:theme="@style/AppThemeMaterial" />
+        <activity
+            android:name=".DisplayQrActivity"
+            android:theme="@style/AppThemeMaterial" />
+        <activity
             android:name=".CustomerDashboardActivity"
-            android:theme="@style/AppThemeMaterial">
-
-
-        </activity>
+            android:theme="@style/AppThemeMaterial" />
         <activity
             android:name=".ListOfCustomersActivity"
             android:theme="@style/AppThemeMaterial" />

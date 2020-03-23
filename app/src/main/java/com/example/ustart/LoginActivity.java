@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void createLogin() {
+
         if (!username.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
             //loading
             RequestQueue requestQueue= Volley.newRequestQueue(this);
