@@ -22,7 +22,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ustart.Common.Stables;
+import com.example.ustart.adapters.CategoryItemAdapter;
 import com.example.ustart.adapters.ProductItemAdapter;
+import com.example.ustart.models.CategoryItem;
 import com.example.ustart.models.ProductItem;
 import com.squareup.picasso.Picasso;
 
@@ -39,9 +41,11 @@ import jp.wasabeef.picasso.transformations.gpu.BrightnessFilterTransformation;
 public class ProductsForUsers extends AppCompatActivity {
     private ImageView BackButton;
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerViewProduct,recyclerViewCategory;
     ProductItemAdapter productItemAdapter;
+    CategoryItemAdapter categoryItemAdapter;
     ArrayList<ProductItem> productItem;
+    ArrayList<CategoryItem> categoryItems;
     ProgressDialog progressDialog;
     JSONObject productObj;
 
@@ -63,9 +67,13 @@ public class ProductsForUsers extends AppCompatActivity {
 
 
         productItem=new ArrayList<>();
-        recyclerView=findViewById(R.id.product_for_all_users_all_products);
+        categoryItems=new ArrayList<>();
+
+        recyclerViewProduct=findViewById(R.id.product_for_all_users_all_products);
+        recyclerViewCategory=findViewById(R.id.product_for_all_users_all_category);
 
         loadItems();
+        loadCategory();
 
 
 
@@ -75,13 +83,25 @@ public class ProductsForUsers extends AppCompatActivity {
 
 
     private void loadItems() {
-        productItemAdapter=new ProductItemAdapter(productItem);
+        productItemAdapter=new ProductItemAdapter(this,productItem);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(productItemAdapter);
+        recyclerViewProduct.setLayoutManager(mLayoutManager);
+        recyclerViewProduct.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewProduct.setAdapter(productItemAdapter);
         loadItemsToList();
     }
+
+    private void loadCategory() {
+        categoryItemAdapter=new CategoryItemAdapter(categoryItems);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        recyclerViewCategory.setLayoutManager(mLayoutManager);
+        recyclerViewCategory.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewCategory.setAdapter(categoryItemAdapter);
+        loadCategoryToList();
+    }
+
+
+
 
     private void loadItemsToList() {
         progressDialog.show();
@@ -96,7 +116,7 @@ public class ProductsForUsers extends AppCompatActivity {
 
                             ProductItem pi = new ProductItem();
                             pi.setTitle(jsonObject.getString("name"));
-                            pi.setDescription(jsonObject.getString("product_price"));
+                            pi.setDescription(jsonObject.getString("description"));
                             pi.setPrice("LKR "+jsonObject.getString("product_price")+".00");
 
                             productItem.add(pi);
@@ -118,6 +138,58 @@ public class ProductsForUsers extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
+    }
+
+
+
+    private void loadCategoryToList() {
+        progressDialog.show();
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(new Stables().getCategoryList(), new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        CategoryItem ci = new CategoryItem();
+                        ci.setCategory(jsonObject.getString("name"));
+
+                        categoryItems.add(ci);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                }
+                productItemAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Volley", error.toString());
+                progressDialog.dismiss();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+
+
+
+
+
+
+
+
+
+
+
+
+//        categoryItems.add(new CategoryItem("title"));
+//        categoryItemAdapter.notifyDataSetChanged();
+
     }
 
 

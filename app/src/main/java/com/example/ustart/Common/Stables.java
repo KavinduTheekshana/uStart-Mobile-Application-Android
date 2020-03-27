@@ -40,6 +40,11 @@ public class Stables {
         return baseUrl+"api/getProductList";
     }
 
+    public String getCategoryList(){
+        return baseUrl+"api/getCategoryList";
+    }
+
+
     public String ProfileUpdate(String uid, String name, String tel, String address){
         String url="";
         try {
