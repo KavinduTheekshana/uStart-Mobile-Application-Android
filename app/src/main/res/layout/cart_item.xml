@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -9,7 +10,7 @@
         android:id="@+id/cardviewnewnew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:clickable="true"
         app:cardCornerRadius="4dp">
 
@@ -30,38 +31,30 @@
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
-                android:textSize="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_toRightOf="@id/imageView"
                 android:text="Title"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/software"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewShortDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewTitle"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/imageView"
-                android:text="Description"
-                android:maxLength="50"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
 
 
             <TextView
                 android:id="@+id/textViewPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewShortDesc"
+                android:layout_below="@id/textViewTitle"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/imageView"
-                android:text="LKR Price"
+                android:text="LKR 1200"
+                android:textSize="12dp"
                 android:textColor="@color/software"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
         </RelativeLayout>
 

@@ -18,13 +18,18 @@ import com.example.ustart.models.CategoryItem;
 import com.example.ustart.models.ProductItem;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapter.CategoryItemViewHolder> {
+
+    ProductsForUsers productsForUsers;
+
     private List<CategoryItem> categoryItems;
 
-    public CategoryItemAdapter(List<CategoryItem> categoryItems) {
+    public CategoryItemAdapter(List<CategoryItem> categoryItems, ProductsForUsers productsForUsers) {
         this.categoryItems = categoryItems;
+        this.productsForUsers=productsForUsers;
     }
 
     public static class CategoryItemViewHolder extends RecyclerView.ViewHolder{
@@ -50,7 +55,7 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CategoryItemViewHolder holder,final int position) {
-        CategoryItem categoryItem=categoryItems.get(position);
+        final CategoryItem categoryItem=categoryItems.get(position);
         holder.category.setText(categoryItem.getCategory());
 
         holder.category.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +66,19 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
             }
         });
 
+        if(position==0){
+            holder.category.setBackgroundColor(0xFF097dd3);
+            holder.category.setTextColor(Color.WHITE);
+        }
+
         if(fir!=0){
             if(index==position){
                 holder.category.setBackgroundColor(0xFF097dd3);
                 holder.category.setTextColor(Color.WHITE);
+
+                productsForUsers.productItem=new ArrayList<>();
+                productsForUsers.filter=categoryItem.getId();
+                productsForUsers.loadItems();
             }else{
                 holder.category.setBackgroundColor(Color.WHITE);
                 holder.category.setTextColor(0xFF097dd3);

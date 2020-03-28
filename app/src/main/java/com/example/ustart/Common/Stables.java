@@ -36,6 +36,10 @@ public class Stables {
         return baseUrl+"api/getProfileDetails"+"?id="+id;
     }
 
+    public String getCategoryName(String id){
+        return baseUrl+"api/getCategoryName"+"?id="+id;
+    }
+
     public String getProductList(){
         return baseUrl+"api/getProductList";
     }

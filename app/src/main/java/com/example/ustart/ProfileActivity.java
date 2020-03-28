@@ -34,9 +34,9 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 public class ProfileActivity extends AppCompatActivity {
-    private ImageView BackButton,EditButton,profile_profile_image;
+    private ImageView profile_profile_image;
     private TextView profile_username,profile_user_type,profile_address,profile_email,profile_telephone,profile_joined_date;
-    private MaterialCardView btnLogout;
+    private MaterialCardView btnLogout,profile_back_button,profile_edit_button;
     private LinearLayout numberOfShops;
     ProgressDialog progressDialog;
     @Override
@@ -46,8 +46,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         progressDialog=new Stables().showLoading(this);
 
-        BackButton = (ImageView) findViewById(R.id.btnback);
-        EditButton = (ImageView) findViewById(R.id.btnEdit);
+        profile_back_button =  findViewById(R.id.profile_back_button);
+        profile_edit_button =  findViewById(R.id.profile_edit_button);
 
 
 
@@ -62,13 +62,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         btnLogout = findViewById(R.id.btnLogout);
 
-        BackButton.setOnClickListener(new View.OnClickListener() {
+        profile_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToBack(null);
             }
         });
-        EditButton.setOnClickListener(new View.OnClickListener() {
+        profile_edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditUserProfileActivity();

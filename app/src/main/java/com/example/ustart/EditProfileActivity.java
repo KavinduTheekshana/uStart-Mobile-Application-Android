@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.ustart.Common.PreviousActivities;
 import com.example.ustart.Common.Stables;
 //import com.jgabrielfreitas.core.BlurImageView;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
@@ -35,7 +36,7 @@ import jp.wasabeef.picasso.transformations.BlurTransformation;
 import jp.wasabeef.picasso.transformations.gpu.BrightnessFilterTransformation;
 
 public class EditProfileActivity extends AppCompatActivity {
-    private ImageView BackButton,edit_profile_profile_image,blurImageView,edit_profile_password;
+    private ImageView edit_profile_profile_image,blurImageView;
     private TextInputEditText edit_profile_user_name,edit_profile_telephone,edit_profile_address,
             edit_profile_province,edit_profile_joined_date,edit_profile_district,edit_profile_city,
             edit_profile_shop_name;
@@ -43,6 +44,7 @@ public class EditProfileActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     JSONObject userObj;
     ProgressDialog progressDialog;
+    MaterialCardView edit_profile_back_button,edit_profile_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +53,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
         progressDialog=new Stables().showLoading(this);
 
-        BackButton = (ImageView) findViewById(R.id.edit_profile_btnback);
-        edit_profile_password = (ImageView) findViewById(R.id.edit_profile_password);
-        blurImageView = (ImageView) findViewById(R.id.BlurImageView);
+        edit_profile_back_button = findViewById(R.id.edit_profile_back_button);
+        edit_profile_password =  findViewById(R.id.edit_profile_password);
+        blurImageView = findViewById(R.id.BlurImageView);
 
         btn_edit_profile_update = findViewById(R.id.btn_edit_profile_update);
 
@@ -67,7 +69,7 @@ public class EditProfileActivity extends AppCompatActivity {
         edit_profile_shop_name = findViewById(R.id.edit_profile_shop_name);
         edit_profile_profile_image = (ImageView) findViewById(R.id.edit_profile_profile_image);
 
-        BackButton.setOnClickListener(new View.OnClickListener() {
+        edit_profile_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToBack(null);

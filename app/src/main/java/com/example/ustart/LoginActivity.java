@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("userid",userObj.getString("id"));
                             editor.putString("email",userObj.getString("email"));
+                            editor.putString("userType",userObj.getString("user_type"));
                             editor.commit();
 
                             Intent intent = new Intent(LoginActivity.this, MainDashboardActivity.class);
@@ -101,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("userid",userObj.getString("id"));
                             editor.putString("email",userObj.getString("email"));
+                            editor.putString("userType",userObj.getString("user_type"));
                             editor.commit();
 
                             Intent intent = new Intent(LoginActivity.this, CustomerDashboardActivity.class);

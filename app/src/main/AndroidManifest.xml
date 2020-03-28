@@ -15,6 +15,8 @@
             android:name=".SingleProductActivity"
             android:theme="@style/AppThemeMaterial">
 
+
+
         </activity>
         <activity
             android:name=".CurrentPasswordActivity"
@@ -62,11 +64,13 @@
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppThemeFullScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data

@@ -24,6 +24,7 @@
             android:layout_marginRight="@dimen/mtrl_card_spacing">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_back_button"
                 android:clickable="true"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
@@ -37,7 +38,6 @@
                 app:cardCornerRadius="23dp">
 
             <ImageView
-                android:id="@+id/btnback"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitStart"
@@ -82,6 +82,7 @@
             android:gravity="right">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profile_edit_button"
                 android:clickable="true"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
@@ -95,7 +96,6 @@
                 app:cardCornerRadius="23dp">
 
             <ImageView
-                android:id="@+id/btnEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_wheel"

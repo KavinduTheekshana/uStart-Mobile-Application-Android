@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -26,6 +27,7 @@ import com.example.ustart.adapters.CategoryItemAdapter;
 import com.example.ustart.adapters.ProductItemAdapter;
 import com.example.ustart.models.CategoryItem;
 import com.example.ustart.models.ProductItem;
+import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -39,16 +41,19 @@ import jp.wasabeef.picasso.transformations.BlurTransformation;
 import jp.wasabeef.picasso.transformations.gpu.BrightnessFilterTransformation;
 
 public class ProductsForUsers extends AppCompatActivity {
-    private ImageView BackButton;
+    private MaterialCardView product_for_all_users_back_button;
+
+    private TextView product_for_all_users_empty_product;
 
     RecyclerView recyclerViewProduct,recyclerViewCategory;
     ProductItemAdapter productItemAdapter;
     CategoryItemAdapter categoryItemAdapter;
-    ArrayList<ProductItem> productItem;
+    public ArrayList<ProductItem> productItem;
     ArrayList<CategoryItem> categoryItems;
     ProgressDialog progressDialog;
     JSONObject productObj;
 
+    public String filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +62,18 @@ public class ProductsForUsers extends AppCompatActivity {
 
         progressDialog=new Stables().showLoading(this);
 
-        BackButton = (ImageView) findViewById(R.id.btnback);
-        BackButton.setOnClickListener(new View.OnClickListener() {
+        product_for_all_users_back_button = (MaterialCardView) findViewById(R.id.product_for_all_users_back_button);
+        product_for_all_users_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToBack(null);
             }
         });
 
+        product_for_all_users_empty_product=findViewById(R.id.product_for_all_users_empty_product);
 
+
+        filter="0";
         productItem=new ArrayList<>();
         categoryItems=new ArrayList<>();
 
@@ -82,17 +90,23 @@ public class ProductsForUsers extends AppCompatActivity {
 
 
 
-    private void loadItems() {
+    public void loadItems() {
+
+
+
         productItemAdapter=new ProductItemAdapter(this,productItem);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewProduct.setLayoutManager(mLayoutManager);
         recyclerViewProduct.setItemAnimator(new DefaultItemAnimator());
         recyclerViewProduct.setAdapter(productItemAdapter);
-        loadItemsToList();
+        loadItemsToList(filter);
+
+
     }
 
     private void loadCategory() {
-        categoryItemAdapter=new CategoryItemAdapter(categoryItems);
+        categoryItemAdapter=new CategoryItemAdapter(categoryItems,this);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerViewCategory.setLayoutManager(mLayoutManager);
         recyclerViewCategory.setItemAnimator(new DefaultItemAnimator());
@@ -101,9 +115,12 @@ public class ProductsForUsers extends AppCompatActivity {
     }
 
 
+    private void loadItemsToList(final String filterPrefix) {
 
+//        productItem=new ArrayList<>();
 
-    private void loadItemsToList() {
+        System.out.println("PREFIX -------------------- "+filterPrefix);
+
         progressDialog.show();
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(new Stables().getProductList(), new Response.Listener<JSONArray>() {
@@ -114,21 +131,45 @@ public class ProductsForUsers extends AppCompatActivity {
 
                         JSONObject jsonObject = response.getJSONObject(i);
 
-                            ProductItem pi = new ProductItem();
+                        ProductItem pi = new ProductItem();
+
+                        if(filterPrefix=="0"){
                             pi.setTitle(jsonObject.getString("name"));
                             pi.setDescription(jsonObject.getString("description"));
                             pi.setPrice("LKR "+jsonObject.getString("product_price")+".00");
+                            pi.setImage(jsonObject.getString("product_image"));
+                            pi.setCategory(jsonObject.getString("category_id"));
+                            pi.setId(jsonObject.getString("id"));
+                            //pi.setCategory();
 
                             productItem.add(pi);
+                        }else if(jsonObject.getString("category_id").equals(filterPrefix)){
+                            pi.setTitle(jsonObject.getString("name"));
+                            pi.setDescription(jsonObject.getString("description"));
+                            pi.setPrice("LKR "+jsonObject.getString("product_price")+".00");
+                            pi.setImage(jsonObject.getString("product_image"));
+                            pi.setCategory(jsonObject.getString("category_id"));
+                            pi.setId(jsonObject.getString("id"));
 
+                            //pi.setCategory();
+
+                            productItem.add(pi);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         progressDialog.dismiss();
                     }
                 }
+                if(productItem.size()!=0){
+                    product_for_all_users_empty_product.setVisibility(View.GONE);
+                }else{
+                    product_for_all_users_empty_product.setVisibility(View.VISIBLE);
+                }
                 productItemAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
             }
+
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -148,13 +189,14 @@ public class ProductsForUsers extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(new Stables().getCategoryList(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+
+                CategoryItem all = new CategoryItem("0","All");
+                categoryItems.add(all);
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
-
                         JSONObject jsonObject = response.getJSONObject(i);
-
-                        CategoryItem ci = new CategoryItem();
-                        ci.setCategory(jsonObject.getString("name"));
+                        CategoryItem ci = new CategoryItem(jsonObject.getString("id"),jsonObject.getString("name"));
 
                         categoryItems.add(ci);
 
@@ -163,8 +205,7 @@ public class ProductsForUsers extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 }
-                productItemAdapter.notifyDataSetChanged();
-                progressDialog.dismiss();
+                categoryItemAdapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -179,16 +220,6 @@ public class ProductsForUsers extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-//        categoryItems.add(new CategoryItem("title"));
-//        categoryItemAdapter.notifyDataSetChanged();
 
     }
 

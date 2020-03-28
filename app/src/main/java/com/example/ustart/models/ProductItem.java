@@ -1,16 +1,28 @@
 package com.example.ustart.models;
 
 public class ProductItem {
-    String title,description,price;
+    String id,title,description,price,category,image;
 
     public ProductItem(){
 
     }
 
-    public ProductItem(String title, String description, String price) {
+
+    public ProductItem(String id, String title, String description, String price, String category, String image) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
+        this.category = category;
+        this.image = image;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -35,5 +47,21 @@ public class ProductItem {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
