@@ -32,7 +32,7 @@ public class SingleProductActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     MaterialButton single_product_add_to_cart_button;
     int qty = 0;
-    String cartUserId,cartUserType,cartProductId,cartQty,cartIsAvailableCartStatus,cartStatus;
+    String cartUserId,cartUserType,cartProductId,cartQty,cartIsAvailableForCartStatus,cartIsAvailableForPublicStatus;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -94,13 +94,37 @@ public class SingleProductActivity extends AppCompatActivity {
 
     private void cartProcess() {
         sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
-        
+
         cartUserId = sharedPreferences.getString("userid","0");
         cartUserType = sharedPreferences.getString("userType","0");
         cartProductId = getIntent().getStringExtra("id");
         cartQty = single_product_qty.getText().toString().trim();
 
-//        Toast.makeText(this,  + ":" +  + ":" + sharedPreferences.getString("userid","0"), Toast.LENGTH_SHORT).show();
+
+        try {
+
+            String url=new Stables().CreateCart(cartUserId, cartUserType, cartProductId, cartQty);
+            System.out.println(url);
+            RequestQueue requestQueue= Volley.newRequestQueue(SingleProductActivity.this);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(SingleProductActivity.this, "Your Item Is Added to cart", Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(SingleProductActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            requestQueue.add(stringRequest);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 
 

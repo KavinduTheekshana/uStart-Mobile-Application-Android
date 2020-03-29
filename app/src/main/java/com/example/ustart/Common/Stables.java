@@ -56,7 +56,16 @@ public class Stables {
         }catch(Exception e){
             e.printStackTrace();
         }
+        return url;
+    }
 
+    public String CreateCart(String cartUserId, String cartUserType, String cartProductId, String cartQty){
+        String url="";
+        try {
+            url=baseUrl+"api/CreateCart?"+"userid="+cartUserId+"&usertype="+URLEncoder.encode(cartUserType,"utf-8")+"&productid="+URLEncoder.encode(cartProductId,"utf-8")+"&qty="+URLEncoder.encode(cartQty,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return url;
     }
 

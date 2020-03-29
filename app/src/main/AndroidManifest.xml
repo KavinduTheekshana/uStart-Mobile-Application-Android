@@ -12,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".SingleProductActivity"
+            android:name=".CartActivity"
             android:theme="@style/AppThemeMaterial">
 
-
-
         </activity>
+        <activity
+            android:name=".SingleProductActivity"
+            android:theme="@style/AppThemeMaterial"></activity>
         <activity
             android:name=".CurrentPasswordActivity"
             android:theme="@style/AppThemeMaterial" />
@@ -40,7 +41,7 @@
         <activity
             android:name=".ProductsForUsers"
             android:parentActivityName=".MainDashboardActivity"
-            android:theme="@style/AppThemeMaterial"></activity>
+            android:theme="@style/AppThemeMaterial" />
         <activity
             android:name=".ProfileActivity"
             android:parentActivityName=".MainDashboardActivity"
@@ -64,13 +65,11 @@
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppThemeFullScreen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <meta-data
