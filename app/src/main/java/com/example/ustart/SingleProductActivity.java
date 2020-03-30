@@ -28,11 +28,11 @@ public class SingleProductActivity extends AppCompatActivity {
 
     TextView single_product_name,single_product_description,single_product_category,single_product_price,single_product_qty;
     ImageView single_product_image;
-    MaterialCardView single_product_back_button,single_product_qty_up,single_product_qty_down;
+    MaterialCardView single_product_back_button,single_product_qty_up,single_product_qty_down,single_product_cart;
     ProgressDialog progressDialog;
     MaterialButton single_product_add_to_cart_button;
     int qty = 0;
-    String cartUserId,cartUserType,cartProductId,cartQty,cartIsAvailableForCartStatus,cartIsAvailableForPublicStatus;
+    String cartUserId,cartUserType,cartProductId,cartQty;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -45,6 +45,7 @@ public class SingleProductActivity extends AppCompatActivity {
 
         //Back Button
         single_product_back_button = findViewById(R.id.single_product_back_button);
+        single_product_cart = findViewById(R.id.single_product_cart);
 
         //Product Description Text Views
         single_product_name = findViewById(R.id.single_product_name);
@@ -61,7 +62,6 @@ public class SingleProductActivity extends AppCompatActivity {
 
         //load date to text views
         loadDate();
-
 
         //cart buttons
         single_product_qty_up.setOnClickListener(new View.OnClickListener() {
@@ -81,15 +81,24 @@ public class SingleProductActivity extends AppCompatActivity {
             public void onClick(View v) { cartProcess();
             }
         });
-
-
         single_product_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToBack(null);
             }
         });
+        single_product_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToCart(null);
+            }
+        });
 
+    }
+
+    private void goToCart(Object o) {
+        Intent intent = new Intent(SingleProductActivity.this, CartActivity.class);
+        startActivity(intent);
     }
 
     private void cartProcess() {
@@ -101,27 +110,32 @@ public class SingleProductActivity extends AppCompatActivity {
         cartQty = single_product_qty.getText().toString().trim();
 
 
-        try {
+        if (Integer.parseInt(cartQty) == 0) {
+            Toast.makeText(this, "Please Add Qty of Product", Toast.LENGTH_SHORT).show();
+        }else {
+            try {
+                String url=new Stables().CreateCart(cartUserId, cartUserType, cartProductId, cartQty);
+                System.out.println(url);
+                RequestQueue requestQueue= Volley.newRequestQueue(SingleProductActivity.this);
 
-            String url=new Stables().CreateCart(cartUserId, cartUserType, cartProductId, cartQty);
-            System.out.println(url);
-            RequestQueue requestQueue= Volley.newRequestQueue(SingleProductActivity.this);
-
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Toast.makeText(SingleProductActivity.this, "Your Item Is Added to cart", Toast.LENGTH_SHORT).show();
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(SingleProductActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-            requestQueue.add(stringRequest);
-        }catch(Exception e){
-            e.printStackTrace();
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(SingleProductActivity.this, "Your Item Is Added to cart", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SingleProductActivity.this, ProductsForUsers.class);
+                                startActivity(intent);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(SingleProductActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                requestQueue.add(stringRequest);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
 
 
@@ -148,8 +162,6 @@ public class SingleProductActivity extends AppCompatActivity {
         single_product_description.setText((getIntent().getStringExtra("description")!=null)?getIntent().getStringExtra("description"):"");
         single_product_price.setText((getIntent().getStringExtra("price")!=null)?getIntent().getStringExtra("price"):"");
         Picasso.get().load(Stables.baseUrl+ getIntent().getStringExtra("image")).into(single_product_image);
-
-
 
         RequestQueue requestQueue= Volley.newRequestQueue(SingleProductActivity.this);
         StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().getCategoryName(getIntent().getStringExtra("category")), new Response.Listener<String>() {

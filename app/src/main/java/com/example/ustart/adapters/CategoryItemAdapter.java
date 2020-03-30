@@ -1,10 +1,12 @@
 package com.example.ustart.adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,12 +26,13 @@ import java.util.List;
 public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapter.CategoryItemViewHolder> {
 
     ProductsForUsers productsForUsers;
-
+    Context mContext;
     private List<CategoryItem> categoryItems;
 
-    public CategoryItemAdapter(List<CategoryItem> categoryItems, ProductsForUsers productsForUsers) {
+    public CategoryItemAdapter(List<CategoryItem> categoryItems, ProductsForUsers productsForUsers,Context mContext) {
         this.categoryItems = categoryItems;
         this.productsForUsers=productsForUsers;
+        this.mContext = mContext;
     }
 
     public static class CategoryItemViewHolder extends RecyclerView.ViewHolder{
@@ -56,6 +59,11 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
     @Override
     public void onBindViewHolder(@NonNull CategoryItemViewHolder holder,final int position) {
         final CategoryItem categoryItem=categoryItems.get(position);
+
+        //animation
+        holder.category.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));
+
+
         holder.category.setText(categoryItem.getCategory());
 
         holder.category.setOnClickListener(new View.OnClickListener() {

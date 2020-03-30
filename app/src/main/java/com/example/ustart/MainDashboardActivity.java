@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 
 public class MainDashboardActivity extends AppCompatActivity {
 
-    private CardView ScanQrCode,UserProfile,ProductList;
+    private CardView ScanQrCode,UserProfile,ProductList,Customers;
     private ImageView main_dashboard_profile_image;
 
 
@@ -41,6 +41,7 @@ public class MainDashboardActivity extends AppCompatActivity {
         ScanQrCode = (CardView) findViewById(R.id.btnScanQrCode);
         UserProfile = (CardView) findViewById(R.id.btnUserProfile);
         ProductList = (CardView) findViewById(R.id.btnProductList);
+        Customers = (CardView) findViewById(R.id.btnCustomers);
 
         main_dashboard_profile_image = (ImageView) findViewById(R.id.main_dashboard_profile_image);
 
@@ -60,6 +61,12 @@ public class MainDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ProductListActivity();
+            }
+        });
+        Customers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomersActivity();
             }
         });
 
@@ -120,6 +127,11 @@ public class MainDashboardActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void CustomersActivity() {
+        Intent intent = new Intent(this, ListOfCustomersActivity.class);
+        startActivity(intent);
     }
 
     private void ScanQrCodeActivity() {

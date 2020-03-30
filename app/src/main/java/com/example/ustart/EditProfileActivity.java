@@ -123,9 +123,9 @@ public class EditProfileActivity extends AppCompatActivity {
                     edit_profile_district.setText(userObj.getString("district"));
                     edit_profile_city.setText(userObj.getString("city"));
 
-                    if (userObj.getString("user_type")=="1"){
+                    if (Integer.parseInt(userObj.getString("user_type"))==1){
                         edit_profile_shop_name.setVisibility(View.GONE);
-                    }else if(userObj.getString("user_type")=="2"){
+                    }else if(Integer.parseInt(userObj.getString("user_type"))==2){
                         edit_profile_shop_name.setText(userObj.getString("shop_name"));
                     }
 

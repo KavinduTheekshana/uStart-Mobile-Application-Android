@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,11 +33,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
-    private MaterialCardView cart_back_button;
+    private MaterialCardView cart_back_button,cart_home_button;
     RecyclerView recyclerViewProduct;
     ArrayList<CartItem> cartItems;
     CartItemAdapter cartItemAdapter;
     ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
+    TextView cart_empty_cart;
+    Button cart_order_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +49,39 @@ public class CartActivity extends AppCompatActivity {
 
         progressDialog=new Stables().showLoading(this);
 
+        cart_empty_cart = findViewById(R.id.cart_empty_cart);
+        cart_order_button = findViewById(R.id.cart_order_button);
+
         cart_back_button = findViewById(R.id.cart_back_button);
+        cart_home_button = findViewById(R.id.cart_home_button);
         cart_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { goToback(null);
+            }
+        });
+        cart_home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { goToHome(null);
             }
         });
 
         cartItems=new ArrayList<>();
         recyclerViewProduct=findViewById(R.id.cart_recycle_view);
         loadCartItems();
+    }
+
+    private void goToHome(Object o) {
+        sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        int usertype = Integer.parseInt(sharedPreferences.getString("userType","0"));
+        if(usertype==1){
+            Intent intent = new Intent(CartActivity.this, MainDashboardActivity.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(CartActivity.this, CustomerDashboardActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     private void loadCartItems() {
@@ -68,7 +97,7 @@ public class CartActivity extends AppCompatActivity {
 
         progressDialog.show();
 
-        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(new Stables().getCartItemList(sharedPreferences.getString("userid","0")), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -96,6 +125,13 @@ public class CartActivity extends AppCompatActivity {
                         e.printStackTrace();
                         progressDialog.dismiss();
                     }
+                }
+                if(cartItems.size()!=0){
+                    cart_empty_cart.setVisibility(View.GONE);
+                    cart_order_button.setEnabled(true);
+                }else{
+                    cart_empty_cart.setVisibility(View.VISIBLE);
+                    cart_order_button.setEnabled(false);
                 }
                 cartItemAdapter.notifyDataSetChanged();
             }

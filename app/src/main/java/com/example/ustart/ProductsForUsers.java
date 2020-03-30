@@ -60,6 +60,7 @@ public class ProductsForUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_for_users);
 
+        //progress
         progressDialog=new Stables().showLoading(this);
 
         product_for_all_users_back_button = (MaterialCardView) findViewById(R.id.product_for_all_users_back_button);
@@ -113,8 +114,7 @@ public class ProductsForUsers extends AppCompatActivity {
     }
 
     private void loadCategory() {
-        categoryItemAdapter=new CategoryItemAdapter(categoryItems,this);
-//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        categoryItemAdapter=new CategoryItemAdapter(categoryItems,this,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerViewCategory.setLayoutManager(mLayoutManager);
         recyclerViewCategory.setItemAnimator(new DefaultItemAnimator());

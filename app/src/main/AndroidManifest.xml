@@ -11,14 +11,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
+        <activity android:name=".CustomerDetails"></activity>
         <activity
             android:name=".CartActivity"
-            android:theme="@style/AppThemeMaterial">
-
-        </activity>
+            android:theme="@style/AppThemeMaterial"></activity>
         <activity
             android:name=".SingleProductActivity"
-            android:theme="@style/AppThemeMaterial"></activity>
+            android:theme="@style/AppThemeMaterial" />
         <activity
             android:name=".CurrentPasswordActivity"
             android:theme="@style/AppThemeMaterial" />

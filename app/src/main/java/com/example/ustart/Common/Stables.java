@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.102:8000/";
+    public static String baseUrl="http://192.168.8.101:8000/";
     private String loginController=baseUrl+"api/mobilelogin";
     private String currentPassword=baseUrl+"api/currentPassword";
     private String UpdatePasswordController=baseUrl+"api/updatePasswordMobile";
@@ -48,8 +48,16 @@ public class Stables {
         return baseUrl+"api/getCategoryList";
     }
 
+    public String RepGetCustomers(String userid){
+        return baseUrl+"api/RepGetCustomers"+"?repid="+userid;
+    }
+
     public String getCartItemList(String userid){
         return baseUrl+"api/getCartItemList"+"?uid="+userid;
+    }
+
+    public String DeleteCartItem(int cartId){
+        return baseUrl+"api/DeleteCartItem"+"?cartid="+cartId;
     }
 
 

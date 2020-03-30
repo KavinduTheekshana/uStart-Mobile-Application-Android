@@ -88,7 +88,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
 //        }).start();
 
         //animation
-        holder.cardviewnewnew.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale_animation));
+        holder.cardviewnewnew.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));
 
 
 

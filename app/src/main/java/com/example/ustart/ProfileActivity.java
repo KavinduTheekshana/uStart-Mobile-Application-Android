@@ -107,16 +107,12 @@ public class ProfileActivity extends AppCompatActivity {
                     if(jsonObject.getString("code").equals("1")){
                         JSONObject userObj=jsonObject.getJSONObject("user");
                         profile_username.setText(userObj.getString("name"));
-                        if (userObj.getString("user_type")=="1"){
+                        if (Integer.parseInt(userObj.getString("user_type"))==1){
                             profile_user_type.setText("(Sels Rep)");
-                        }else if(userObj.getString("user_type")=="2"){
-                            profile_user_type.setText("(Customer)");
-                        }
-
-                        if (userObj.getString("user_type")=="1"){
                             numberOfShops.setVisibility(View.VISIBLE);
-                        }else if(userObj.getString("user_type")=="2"){
-                            numberOfShops.setVisibility(View.INVISIBLE);
+                        }else if(Integer.parseInt(userObj.getString("user_type"))==2){
+                            profile_user_type.setText("(Customer)");
+                            numberOfShops.setVisibility(View.GONE);
                         }
 
                         profile_address.setText(userObj.getString("address"));
