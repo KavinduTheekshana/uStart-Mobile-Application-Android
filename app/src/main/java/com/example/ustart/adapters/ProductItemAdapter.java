@@ -76,16 +76,16 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         });
 
         //image set loading
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-               try {
-                   Picasso.get().load(Stables.baseUrl+ productItem.getImage()).into(holder.imageView);
-               }catch(Exception e){
-                   System.out.println(e.getMessage());
-               }
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//               try {
+//                   Picasso.get().load(Stables.baseUrl+ productItem.getImage()).into(holder.imageView);
+//               }catch(Exception e){
+//                   System.out.println(e.getMessage());
+//               }
+//            }
+//        }).start();
 
         //animation
         holder.cardviewnewnew.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale_animation));

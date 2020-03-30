@@ -48,6 +48,10 @@ public class Stables {
         return baseUrl+"api/getCategoryList";
     }
 
+    public String getCartItemList(String userid){
+        return baseUrl+"api/getCartItemList"+"?uid="+userid;
+    }
+
 
     public String ProfileUpdate(String uid, String name, String tel, String address){
         String url="";

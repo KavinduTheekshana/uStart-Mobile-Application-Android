@@ -13,9 +13,7 @@
         android:clickable="true"
         android:elevation="1dp"
         android:layout_margin="8dp"
-        style="?attr/materialButtonOutlinedStyle"
-        android:text="Material"
-        app:cornerRadius="25dp" />
+        android:text="Material"/>
 
 
 </LinearLayout>

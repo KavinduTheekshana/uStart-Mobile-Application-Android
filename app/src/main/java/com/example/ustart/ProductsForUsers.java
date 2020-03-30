@@ -41,7 +41,7 @@ import jp.wasabeef.picasso.transformations.BlurTransformation;
 import jp.wasabeef.picasso.transformations.gpu.BrightnessFilterTransformation;
 
 public class ProductsForUsers extends AppCompatActivity {
-    private MaterialCardView product_for_all_users_back_button;
+    private MaterialCardView product_for_all_users_back_button,product_for_all_users_cart_button;
 
     private TextView product_for_all_users_empty_product;
 
@@ -63,10 +63,15 @@ public class ProductsForUsers extends AppCompatActivity {
         progressDialog=new Stables().showLoading(this);
 
         product_for_all_users_back_button = (MaterialCardView) findViewById(R.id.product_for_all_users_back_button);
+        product_for_all_users_cart_button = (MaterialCardView) findViewById(R.id.product_for_all_users_cart_button);
         product_for_all_users_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                goToBack(null);
+            public void onClick(View v) { goToBack(null);
+            }
+        });
+        product_for_all_users_cart_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { goToCart(null);
             }
         });
 
@@ -87,7 +92,10 @@ public class ProductsForUsers extends AppCompatActivity {
 
     }
 
-
+    private void goToCart(Object o) {
+        Intent intent = new Intent(ProductsForUsers.this, CartActivity.class);
+        startActivity(intent);
+    }
 
 
     public void loadItems() {
@@ -117,9 +125,6 @@ public class ProductsForUsers extends AppCompatActivity {
 
     private void loadItemsToList(final String filterPrefix) {
 
-//        productItem=new ArrayList<>();
-
-        System.out.println("PREFIX -------------------- "+filterPrefix);
 
         progressDialog.show();
 
