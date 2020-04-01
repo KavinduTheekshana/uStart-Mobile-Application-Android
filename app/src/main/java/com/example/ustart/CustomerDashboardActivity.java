@@ -24,7 +24,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 
 public class CustomerDashboardActivity extends AppCompatActivity {
-    private CardView DisplayQR,UserProfile;
+    private CardView DisplayQR,UserProfile,customer_dashboard_product_list;
     private ImageView customer_dashboard_profile_image;
 
     @Override
@@ -34,6 +34,7 @@ public class CustomerDashboardActivity extends AppCompatActivity {
 
         DisplayQR = (CardView) findViewById(R.id.btnDisplayQrCode);
         UserProfile = (CardView) findViewById(R.id.btnUserProfile);
+        customer_dashboard_product_list = (CardView) findViewById(R.id.customer_dashboard_product_list);
 
         customer_dashboard_profile_image = (ImageView) findViewById(R.id.customer_dashboard_profile_image);
 
@@ -47,6 +48,12 @@ public class CustomerDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UserProfileActivity();
+            }
+        });
+        customer_dashboard_product_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductForAllUsers();
             }
         });
 
@@ -105,6 +112,11 @@ public class CustomerDashboardActivity extends AppCompatActivity {
         };
         t.start();
 
+    }
+
+    private void ProductForAllUsers() {
+        Intent intent = new Intent(this, ProductsForUsers.class);
+        startActivity(intent);
     }
 
     private void UserProfileActivity() {

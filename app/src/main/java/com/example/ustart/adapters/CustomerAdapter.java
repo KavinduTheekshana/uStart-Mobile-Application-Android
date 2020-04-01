@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ustart.Common.Stables;
 import com.example.ustart.CustomerDetails;
+import com.example.ustart.CustomerOrdersActivity;
 import com.example.ustart.ListOfCustomersActivity;
 import com.example.ustart.R;
 import com.example.ustart.SingleProductActivity;
@@ -41,8 +42,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     public static class CustomerViewHolder extends RecyclerView.ViewHolder{
         ImageView single_customer_image;
         TextView single_customer_shop_name,single_customer_address;
-        MaterialCardView single_customer_card_view;
-        LinearLayout single_customer_details_button;
+        MaterialCardView single_customer_card_view,single_customer_details_button,single_customer_orders_button;
         public CustomerViewHolder(@NonNull View itemView) {
             super(itemView);
             single_customer_image =itemView.findViewById(R.id.single_customer_image);
@@ -50,6 +50,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
             single_customer_address =itemView.findViewById(R.id.single_customer_address);
             single_customer_card_view =itemView.findViewById(R.id.single_customer_card_view);
             single_customer_details_button =itemView.findViewById(R.id.single_customer_details_button);
+            single_customer_orders_button =itemView.findViewById(R.id.single_customer_orders_button);
         }
     }
 
@@ -63,7 +64,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomerViewHolder holder,final int position) {
         final Customers customer = customers.get(position);
 
         holder.single_customer_details_button.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +83,18 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
                 );
             }
         });
+
+        holder.single_customer_orders_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, CustomerOrdersActivity.class)
+                        .putExtra("customerid",customer.getId())
+                        .putExtra("userimage",customer.getProfile_pic())
+                );
+            }
+        });
+
+
 
         //animation
         holder.single_customer_card_view.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));

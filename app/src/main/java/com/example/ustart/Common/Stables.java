@@ -56,8 +56,18 @@ public class Stables {
         return baseUrl+"api/getCartItemList"+"?uid="+userid;
     }
 
+    public String SingleCustomerOrderdItems(String customerid){
+        return baseUrl+"api/SingleCustomerOrderdItems"+"?customerid="+customerid;
+    }
+
+
+
     public String DeleteCartItem(int cartId){
         return baseUrl+"api/DeleteCartItem"+"?cartid="+cartId;
+    }
+
+    public String OrderNowMobile(String uid){
+        return baseUrl+"api/OrderNowMobile"+"?uid="+uid;
     }
 
 

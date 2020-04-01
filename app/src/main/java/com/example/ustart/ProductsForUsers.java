@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +31,7 @@ import com.example.ustart.adapters.ProductItemAdapter;
 import com.example.ustart.models.CategoryItem;
 import com.example.ustart.models.ProductItem;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -45,6 +49,7 @@ public class ProductsForUsers extends AppCompatActivity {
 
     private TextView product_for_all_users_empty_product;
 
+    private TextInputEditText product_for_all_users_search;
     RecyclerView recyclerViewProduct,recyclerViewCategory;
     ProductItemAdapter productItemAdapter;
     CategoryItemAdapter categoryItemAdapter;
@@ -55,10 +60,16 @@ public class ProductsForUsers extends AppCompatActivity {
 
     public String filter;
 
+    String searchPrefix;
+
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_for_users);
+
+        product_for_all_users_search = findViewById(R.id.product_for_all_users_search);
 
         //progress
         progressDialog=new Stables().showLoading(this);
@@ -78,6 +89,7 @@ public class ProductsForUsers extends AppCompatActivity {
 
         product_for_all_users_empty_product=findViewById(R.id.product_for_all_users_empty_product);
 
+        searchPrefix="";
 
         filter="0";
         productItem=new ArrayList<>();
@@ -89,8 +101,39 @@ public class ProductsForUsers extends AppCompatActivity {
         loadItems();
         loadCategory();
 
+        addSearchListener();
+
+    }
+
+    private void addSearchListener() {
+        product_for_all_users_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                searchPrefix=product_for_all_users_search.getText().toString();
+//                loadItemsToList(filter);
+
+                if(product_for_all_users_search.getText().toString().length()>2){
+                    searchPrefix=product_for_all_users_search.getText().toString();
+                    loadItemsToList(filter);
+                }else{
+                    if(product_for_all_users_search.getText().toString().length()==0){
+                        searchPrefix="";
+                        loadItemsToList(filter);
+                    }
+                }
 
 
+            }
+        });
     }
 
     private void goToCart(Object o) {
@@ -100,9 +143,6 @@ public class ProductsForUsers extends AppCompatActivity {
 
 
     public void loadItems() {
-
-
-
         productItemAdapter=new ProductItemAdapter(this,productItem);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewProduct.setLayoutManager(mLayoutManager);
@@ -114,7 +154,7 @@ public class ProductsForUsers extends AppCompatActivity {
     }
 
     private void loadCategory() {
-        categoryItemAdapter=new CategoryItemAdapter(categoryItems,this,this);
+        categoryItemAdapter=new CategoryItemAdapter(categoryItems, ProductsForUsers.this, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerViewCategory.setLayoutManager(mLayoutManager);
         recyclerViewCategory.setItemAnimator(new DefaultItemAnimator());
@@ -126,11 +166,18 @@ public class ProductsForUsers extends AppCompatActivity {
     private void loadItemsToList(final String filterPrefix) {
 
 
-        progressDialog.show();
+
+        if(searchPrefix.trim().equals("")){
+            progressDialog.show();
+        }
+
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(new Stables().getProductList(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+
+                productItem.clear();
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
 
@@ -138,40 +185,54 @@ public class ProductsForUsers extends AppCompatActivity {
 
                         ProductItem pi = new ProductItem();
 
-                        if(filterPrefix=="0"){
-                            pi.setTitle(jsonObject.getString("name"));
-                            pi.setDescription(jsonObject.getString("description"));
-                            pi.setPrice("LKR "+jsonObject.getString("product_price")+".00");
-                            pi.setImage(jsonObject.getString("product_image"));
-                            pi.setCategory(jsonObject.getString("category_id"));
-                            pi.setId(jsonObject.getString("id"));
-                            //pi.setCategory();
 
-                            productItem.add(pi);
-                        }else if(jsonObject.getString("category_id").equals(filterPrefix)){
-                            pi.setTitle(jsonObject.getString("name"));
-                            pi.setDescription(jsonObject.getString("description"));
-                            pi.setPrice("LKR "+jsonObject.getString("product_price")+".00");
-                            pi.setImage(jsonObject.getString("product_image"));
-                            pi.setCategory(jsonObject.getString("category_id"));
-                            pi.setId(jsonObject.getString("id"));
+                        if(jsonObject.getString("name").trim().contains(searchPrefix.trim())){
+                            if(filterPrefix=="0"){
+                                pi.setTitle(jsonObject.getString("name"));
+                                pi.setDescription(jsonObject.getString("description"));
+                                pi.setPrice("LKR "+jsonObject.getString("product_price")+".00");
+                                pi.setImage(jsonObject.getString("product_image"));
+                                pi.setCategory(jsonObject.getString("category_id"));
+                                pi.setId(jsonObject.getString("id"));
+                                //pi.setCategory();
 
-                            //pi.setCategory();
+                                productItem.add(pi);
+                            }else if(jsonObject.getString("category_id").equals(filterPrefix)){
+                                pi.setTitle(jsonObject.getString("name"));
+                                pi.setDescription(jsonObject.getString("description"));
+                                pi.setPrice("LKR "+jsonObject.getString("product_price")+".00");
+                                pi.setImage(jsonObject.getString("product_image"));
+                                pi.setCategory(jsonObject.getString("category_id"));
+                                pi.setId(jsonObject.getString("id"));
 
-                            productItem.add(pi);
+                                //pi.setCategory();
+
+                                productItem.add(pi);
+                            }
                         }
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                         progressDialog.dismiss();
                     }
                 }
+
+                //recyclerViewProduct.setAdapter(productItemAdapter);
+                productItemAdapter.notifyDataSetChanged();
+
                 if(productItem.size()!=0){
                     product_for_all_users_empty_product.setVisibility(View.GONE);
                 }else{
                     product_for_all_users_empty_product.setVisibility(View.VISIBLE);
                 }
-                productItemAdapter.notifyDataSetChanged();
-                progressDialog.dismiss();
+
+                if(searchPrefix.trim().equals("")){
+                    progressDialog.dismiss();
+                }
+
+
+
             }
 
 
@@ -320,7 +381,20 @@ public class ProductsForUsers extends AppCompatActivity {
 
 
     public void goToBack(View view){
-        onBackPressed();
+
+        sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        if (Integer.parseInt(sharedPreferences.getString("userType","0"))==1){
+            onBackPressed();
+            Intent intent = new Intent(ProductsForUsers.this, MainDashboardActivity.class);
+            startActivity(intent);
+        }else {
+            onBackPressed();
+            Intent intent = new Intent(ProductsForUsers.this, CustomerDashboardActivity.class);
+            startActivity(intent);
+        }
+
+
+
     }
 
     @Override

@@ -48,17 +48,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
     public class CartItemViewHolder extends RecyclerView.ViewHolder {
         TextView title,price,qty,total;
-        LinearLayout remove;
         ImageView image;
-        CardView cardView;
-        LinearLayout cart_item_remove_button;
+        CardView cardView,cart_item_remove_button;
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.cart_item_tetle);
             price=itemView.findViewById(R.id.cart_item_price);
             qty=itemView.findViewById(R.id.cart_item_qty);
             total=itemView.findViewById(R.id.cart_item_total_price);
-            remove=itemView.findViewById(R.id.cart_item_remove_button);
             image=itemView.findViewById(R.id.cart_item_image);
             cardView=itemView.findViewById(R.id.cart_item_card_view);
             cart_item_remove_button=itemView.findViewById(R.id.cart_item_remove_button);
@@ -99,6 +96,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    cartItems.remove(position);
+                                    notifyDataSetChanged();
                                     notifyItemRemoved(position);
                                     Toast.makeText(cartActivity, "Your Item has been Deleted", Toast.LENGTH_SHORT).show();
                                 }
