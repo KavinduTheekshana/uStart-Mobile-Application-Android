@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -24,12 +26,14 @@ public class ScannerActivity extends AppCompatActivity {
     CodeScanner codeScanner;
     CodeScannerView scannView;
     TextView resultData;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
+        mContext = this;
         scannView = findViewById(R.id.scannerView);
         codeScanner = new CodeScanner(this,scannView);
         resultData = findViewById(R.id.resultsOfQr);
@@ -41,7 +45,19 @@ public class ScannerActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        resultData.setText(result.getText());
+
+                        if(result.getText().contains("-")){
+                            String userID=result.getText().split("-")[1];
+
+                            System.out.println(userID);
+                            mContext.startActivity(new Intent(mContext, CustomerOrdersActivity.class)
+                                    .putExtra("customerid",userID)
+                            );
+
+                        }else{
+                            Toast.makeText(ScannerActivity.this, "Invalid code", Toast.LENGTH_SHORT).show();
+                        }
+                        
                     }
                 });
 

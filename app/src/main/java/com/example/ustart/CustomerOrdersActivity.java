@@ -69,7 +69,7 @@ public class CustomerOrdersActivity extends AppCompatActivity {
 
         //profile Image
         customer_orders_profile_image=findViewById(R.id.customer_orders_profile_image);
-        Picasso.get().load(Stables.baseUrl+ getIntent().getStringExtra("userimage")).into(customer_orders_profile_image);
+//        Picasso.get().load(Stables.baseUrl+ getIntent().getStringExtra("userimage")).into(customer_orders_profile_image);
     }
 
     private void loadOrderItems() {
@@ -92,10 +92,13 @@ public class CustomerOrdersActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
                         OrderItem oi = new OrderItem();
+                        oi.setId(jsonObject.getString("product_id"));
                         oi.setProductName(jsonObject.getString("name"));
                         oi.setPrice(jsonObject.getString("product_price"));
                         oi.setQty(jsonObject.getString("qty"));
                         oi.setImage(jsonObject.getString("product_image"));
+                        System.out.println(jsonObject.getString("userProfileImage"));
+                        Picasso.get().load(Stables.baseUrl+ jsonObject.getString("userProfileImage")).into(customer_orders_profile_image);
 
                         orderItems.add(oi);
                     } catch (JSONException e) {

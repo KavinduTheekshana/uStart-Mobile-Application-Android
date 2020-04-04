@@ -100,6 +100,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
                                     notifyDataSetChanged();
                                     notifyItemRemoved(position);
                                     Toast.makeText(cartActivity, "Your Item has been Deleted", Toast.LENGTH_SHORT).show();
+                                    cartActivity.calculateTotal();
                                 }
                             }, new Response.ErrorListener() {
                         @Override
@@ -111,17 +112,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
                 }catch(Exception e){
                     e.printStackTrace();
                 }
-
-
-
-
-
-
-
-
-
-
-
             }
         });
 

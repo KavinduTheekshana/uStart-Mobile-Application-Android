@@ -43,7 +43,7 @@ public class DisplayQrActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
                 String userID = sharedPreferences.getString("userid","0");
 
-                String printQR = dateString + " - " + userID;
+                String printQR = dateString + "-" + userID;
 
 
                

@@ -118,18 +118,18 @@ public class ProductsForUsers extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                searchPrefix=product_for_all_users_search.getText().toString();
-//                loadItemsToList(filter);
+                searchPrefix=product_for_all_users_search.getText().toString();
+                loadItemsToList(filter);
 
-                if(product_for_all_users_search.getText().toString().length()>2){
-                    searchPrefix=product_for_all_users_search.getText().toString();
-                    loadItemsToList(filter);
-                }else{
-                    if(product_for_all_users_search.getText().toString().length()==0){
-                        searchPrefix="";
-                        loadItemsToList(filter);
-                    }
-                }
+//                if(product_for_all_users_search.getText().toString().length()>2){
+//                    searchPrefix=product_for_all_users_search.getText().toString();
+//                    loadItemsToList(filter);
+//                }else{
+//                    if(product_for_all_users_search.getText().toString().length()==0){
+//                        searchPrefix="";
+//                        loadItemsToList(filter);
+//                    }
+//                }
 
 
             }

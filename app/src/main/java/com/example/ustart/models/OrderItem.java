@@ -1,18 +1,27 @@
 package com.example.ustart.models;
 
 public class OrderItem {
-    String productName,qty,price,image,userImage;
+    String id,productName,qty,price,image,userImage;
 
     public OrderItem(){
 
     }
 
-    public OrderItem(String productName, String qty, String price, String image, String userImage) {
+    public OrderItem(String id, String productName, String qty, String price, String image, String userImage) {
+        this.id = id;
         this.productName = productName;
         this.qty = qty;
         this.price = price;
         this.image = image;
         this.userImage = userImage;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getProductName() {

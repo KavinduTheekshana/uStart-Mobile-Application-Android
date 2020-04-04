@@ -44,7 +44,7 @@ public class CartActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
     TextView cart_empty_cart;
-    Button cart_order_button;
+    public Button cart_order_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +99,8 @@ public class CartActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 Toast.makeText(CartActivity.this, "Your Order is Done", Toast.LENGTH_SHORT).show();
+                                cartItems.clear();
+                                loadCartItems();
 //                                Intent intent = new Intent(SingleProductActivity.this, ProductsForUsers.class);
 //                                startActivity(intent);
                             }
@@ -149,8 +151,6 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
 
-            int total=0;
-
 //new BigDecimal("2000").setScale(2).doubleValue();
 
 
@@ -160,19 +160,17 @@ public class CartActivity extends AppCompatActivity {
                         CartItem ci = new CartItem();
                         ci.setId(jsonObject.getString("id"));
                         ci.setTitle(jsonObject.getString("title"));
-                        ci.setPrice("LKR "+jsonObject.getString("price")+".00");
+                        ci.setPrice(jsonObject.getString("price"));
                         ci.setQty(jsonObject.getString("qty"));
 
                         int qty = jsonObject.getInt("qty");
                         int price = jsonObject.getInt("price");
                         String totalPrice = String.valueOf(qty*price);
-                        ci.setTotal("LKR "+totalPrice+".00");
+                        ci.setTotal(totalPrice);
 
                         ci.setImage(jsonObject.getString("image"));
 
                         cartItems.add(ci);
-
-                        total+=Integer.parseInt(totalPrice);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -180,7 +178,7 @@ public class CartActivity extends AppCompatActivity {
                     }
                 }
 
-                cart_order_button.setText("("+"LKR "+total+".00"+") "+"- "+"Order Now");
+
 
                 if(cartItems.size()!=0){
                     cart_empty_cart.setVisibility(View.GONE);
@@ -190,6 +188,8 @@ public class CartActivity extends AppCompatActivity {
                     cart_order_button.setEnabled(false);
                 }
                 cartItemAdapter.notifyDataSetChanged();
+
+                calculateTotal();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -205,5 +205,13 @@ public class CartActivity extends AppCompatActivity {
 
     private void goToback(Object o) {
         onBackPressed();
+    }
+
+    public void calculateTotal(){
+        double total=0.0;
+        for(CartItem cartItem:cartItems){
+            total+=Double.parseDouble(cartItem.getTotal());
+        }
+        cart_order_button.setText("("+"LKR "+total+".00"+") "+"- "+"Order Now");
     }
 }

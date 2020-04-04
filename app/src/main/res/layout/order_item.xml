@@ -147,6 +147,7 @@
     android:layout_gravity="center">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mark_as_complete_button"
         android:layout_margin="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
