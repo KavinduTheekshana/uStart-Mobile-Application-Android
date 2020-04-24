@@ -85,7 +85,7 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
                 holder.category.setTextColor(Color.WHITE);
 
                 productsForUsers.productItem=new ArrayList<>();
-                productsForUsers.filter=categoryItem.getId();
+                productsForUsers.filter = categoryItem.getId();
                 productsForUsers.loadItems();
             }else{
                 holder.category.setBackgroundColor(Color.WHITE);

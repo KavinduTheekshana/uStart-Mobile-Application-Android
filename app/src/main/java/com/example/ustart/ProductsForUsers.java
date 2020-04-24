@@ -150,7 +150,6 @@ public class ProductsForUsers extends AppCompatActivity {
         recyclerViewProduct.setAdapter(productItemAdapter);
         loadItemsToList(filter);
 
-
     }
 
     private void loadCategory() {

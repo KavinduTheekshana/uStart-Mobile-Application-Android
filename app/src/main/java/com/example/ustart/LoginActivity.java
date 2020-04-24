@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject jsonObject=new JSONObject(response);
 
                         if(jsonObject.getString("code").equals("1")){
-                            Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Welcome sels rep", Toast.LENGTH_SHORT).show();
 
                             JSONObject userObj=jsonObject.getJSONObject("user");
                             SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
 
                         }else if(jsonObject.getString("code").equals("2")){
-                            Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Welcome customer", Toast.LENGTH_SHORT).show();
 
                             JSONObject userObj=jsonObject.getJSONObject("user");
                             SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     //hide loading
-                    Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Network Connection", Toast.LENGTH_SHORT).show();
                 }
             });
 

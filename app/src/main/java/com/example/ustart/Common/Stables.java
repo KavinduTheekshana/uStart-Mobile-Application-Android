@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.102:8000/";
+    public static String baseUrl="http://192.168.8.100:8000/";
     private String loginController=baseUrl+"api/mobilelogin";
     private String currentPassword=baseUrl+"api/currentPassword";
     private String UpdatePasswordController=baseUrl+"api/updatePasswordMobile";
@@ -36,7 +36,28 @@ public class Stables {
         return baseUrl+"api/getProfileDetails"+"?id="+id;
     }
 
-    public String getCategoryName(String id){
+    public String CodeVerification(String email,String code){
+        String url="";
+        try {
+            url=baseUrl+"api/checkverificationcode?"+"email="+ URLEncoder.encode(email,"utf-8")+"&code="+URLEncoder.encode(code,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public String ResetPassword(String email,String password) {
+        String url = "";
+        try {
+            url = baseUrl + "api/resetpasswordmobile?" + "email=" + URLEncoder.encode(email, "utf-8")
+                    + "&password=" + URLEncoder.encode(password, "utf-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+        public String getCategoryName(String id){
         return baseUrl+"api/getCategoryName"+"?id="+id;
     }
 
@@ -51,6 +72,17 @@ public class Stables {
     public String RepGetCustomers(String userid){
         return baseUrl+"api/RepGetCustomers"+"?repid="+userid;
     }
+
+    public String EmailVerification(String email){
+        String url="";
+        try {
+            url=baseUrl+"api/verificationcode?"+"email="+ URLEncoder.encode(email,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
 
     public String getCartItemList(String userid){
         return baseUrl+"api/getCartItemList"+"?uid="+userid;
