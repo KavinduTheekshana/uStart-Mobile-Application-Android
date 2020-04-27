@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfileActivity"
+    android:background="@color/lightgray"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+
+
+
+
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+<!--        <com.jgabrielfreitas.core.BlurImageView-->
+<!--            android:id="@+id/BlurImageView"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="fill_parent"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:src="@drawable/profile" />-->
+
+
+        <ImageView
+            android:id="@+id/BlurImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/profile"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/edit_profile_back_button"
+                        android:clickable="true"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:elevation="2dp"
+                        app:cardElevation="2dp"
+                        app:cardMaxElevation="2dp"
+                        app:strokeColor="@color/white"
+                        app:cardCornerRadius="23dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/ic_left_arrow"
+                        android:tint="@color/logo_blue"
+                        android:padding="10dp"></ImageView>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_bold"
+                        android:text="Edit Profile"
+                        android:textColor="@color/white"
+                        android:textSize="25dp"
+                        android:textAlignment="center">
+
+                    </TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing"
+                    android:gravity="right">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/edit_profile_password"
+                        android:clickable="true"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:elevation="2dp"
+                        app:cardElevation="2dp"
+                        app:cardMaxElevation="2dp"
+                        app:strokeColor="@color/white"
+                        app:cardCornerRadius="23dp">
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitEnd"
+                        android:src="@drawable/ic_lock"
+                        android:tint="@color/logo_blue"
+                        android:padding="10dp"></ImageView>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+
+                <FrameLayout
+                    android:layout_width="130dp"
+                    android:layout_height="130dp">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:elevation="2dp"
+                        app:cardElevation="5dp"
+                        app:cardMaxElevation="5dp"
+                        app:strokeColor="#fff"
+                        app:cardCornerRadius="60dp">
+
+                        <ImageView
+                            android:id="@+id/edit_profile_profile_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:elevation="1dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/profile"></ImageView>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/profile_details_change_pro_pic"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="10dp"
+                    android:backgroundTint="@color/logo_blue"
+                    android:layout_marginLeft="-25dp"
+                    android:layout_marginTop="35dp"
+                    android:elevation="2dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="18dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tint="@color/white"
+                        android:src="@drawable/ic_camera_alt_black_24dp"
+                        android:padding="8dp"></ImageView>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:textAlignment="center"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:hint="Full Name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_user_name"
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Telephone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_telephone"
+                    android:layout_width="match_parent"
+                    android:inputType="phone"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_address"
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    app:helperTextEnabled="true"
+                    app:helperText="Can't Edit in This Field"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Provience">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_province"
+                        android:layout_width="match_parent"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content"
+                    app:helperTextEnabled="true"
+
+                    app:helperText="Can't Edit in This Field"
+
+                    android:layout_marginTop="10dp"
+                    android:hint="Joined Date">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_joined_date"
+                        android:layout_width="match_parent"
+                        android:inputType="date"
+                        android:enabled="false"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    app:helperTextEnabled="true"
+                    app:helperText="Can't Edit in This Field"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="District">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_district"
+                        android:layout_width="match_parent"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content"
+                    app:helperTextEnabled="true"
+
+                    app:helperText="Can't Edit in This Field"
+
+                    android:layout_marginTop="10dp"
+                    android:hint="City">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_city"
+                        android:layout_width="match_parent"
+                        android:inputType="date"
+                        android:enabled="false"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Shop Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_profile_shop_name"
+                android:layout_width="match_parent"
+                android:inputType="text"
+                android:enabled="false"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_edit_profile_update"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:enabled="true"
+            android:padding="15dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/logo_blue"
+            android:text="Update Profile"/>
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

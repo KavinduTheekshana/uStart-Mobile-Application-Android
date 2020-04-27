@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    tools:context=".CustomerDashboardActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/mtrl_card_spacing"
+            android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:layout_marginRight="@dimen/mtrl_card_corner_radius"
+            android:background="@color/logo_blue"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/customer_dashboard_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile"></ImageView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:text="10:20:30 AM"
+            android:textAlignment="center"
+            android:textSize="40dp" />
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="left"
+        android:padding="20dp"
+
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnGPS"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/mtrl_card_corner_radius"
+                android:layout_marginRight="@dimen/mtrl_card_corner_radius"
+                app:cardBackgroundColor="@color/card_purple"
+                android:background="@color/card_blue"
+                app:cardUseCompatPadding="true"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_target"
+                    android:padding="30dp"
+                    />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:orientation="horizontal">
+
+          <com.google.android.material.card.MaterialCardView
+              android:id="@+id/customer_dashboard_product_list"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="@dimen/mtrl_card_corner_radius"
+
+              android:layout_marginRight="2dp"
+              android:background="@color/card_green"
+              app:cardBackgroundColor="@color/card_green"
+              app:cardUseCompatPadding="true"
+              android:clickable="true">
+
+              <ImageView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:src="@drawable/ic_shopping_store"
+                  android:padding="30dp"
+                  />
+
+          </com.google.android.material.card.MaterialCardView>
+
+
+
+          <com.google.android.material.card.MaterialCardView
+              android:id="@+id/btnUserProfile"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="2dp"
+              android:layout_marginRight="@dimen/mtrl_card_corner_radius"
+              android:background="@color/card_purple"
+              app:cardBackgroundColor="@color/card_orange"
+              app:cardUseCompatPadding="true"
+              android:clickable="true">
+
+              <ImageView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:src="@drawable/ic_user"
+                  android:padding="30dp">
+
+              </ImageView>
+
+          </com.google.android.material.card.MaterialCardView>
+
+      </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnDisplayQrCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/mtrl_card_corner_radius"
+                android:layout_marginRight="@dimen/mtrl_card_corner_radius"
+                app:cardBackgroundColor="@color/card_blue"
+                android:background="@color/card_blue"
+                app:cardUseCompatPadding="true"
+                android:clickable="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_qr_code"
+                android:padding="30dp"
+                />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

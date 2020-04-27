@@ -118,6 +118,16 @@ public class Stables {
         return url;
     }
 
+    public String ProfileUpdatePost(){
+        String url="";
+        try {
+            url=baseUrl+"api/profileUpdate";
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
     public String CreateCart(String cartUserId, String cartUserType, String cartProductId, String cartQty){
         String url="";
         try {
