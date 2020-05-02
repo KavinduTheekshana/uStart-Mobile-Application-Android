@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.100:8000/";
+    public static String baseUrl="http://192.168.8.101:8000/";
     private String loginController=baseUrl+"api/mobilelogin";
     private String currentPassword=baseUrl+"api/currentPassword";
     private String UpdatePasswordController=baseUrl+"api/updatePasswordMobile";
@@ -34,6 +34,10 @@ public class Stables {
 
     public String getProfileDetails(String id){
         return baseUrl+"api/getProfileDetails"+"?id="+id;
+    }
+
+    public String getLatAndLng(String id){
+        return baseUrl+"api/getlatandlng"+"?id="+id;
     }
 
     public String CodeVerification(String email,String code){
@@ -132,6 +136,16 @@ public class Stables {
         String url="";
         try {
             url=baseUrl+"api/CreateCart?"+"userid="+cartUserId+"&usertype="+URLEncoder.encode(cartUserType,"utf-8")+"&productid="+URLEncoder.encode(cartProductId,"utf-8")+"&qty="+URLEncoder.encode(cartQty,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public String CreateRoute(String userID, String dateString, String timeString, String lat, String lng){
+        String url="";
+        try {
+            url=baseUrl+"api/savecurrentlocation?"+"userid="+userID+"&dateString="+URLEncoder.encode(dateString,"utf-8")+"&timeString="+URLEncoder.encode(timeString,"utf-8")+"&lat="+URLEncoder.encode(lat,"utf-8")+"&lng="+URLEncoder.encode(lng,"utf-8");
         }catch(Exception e){
             e.printStackTrace();
         }

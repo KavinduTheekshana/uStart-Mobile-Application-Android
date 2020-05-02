@@ -20,7 +20,7 @@ import com.example.ustart.Common.Stables;
 import org.json.JSONObject;
 
 public class SplashScreen extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT=200;
+    private static int SPLASH_TIME_OUT=3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
