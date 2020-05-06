@@ -88,9 +88,6 @@ public class ScannerActivity extends AppCompatActivity {
 
                                         if(jsonObject.getString("code").equals("1")){
                                             Toast.makeText(ScannerActivity.this, "Done", Toast.LENGTH_SHORT).show();
-
-
-
                                         }else{
                                             Toast.makeText(ScannerActivity.this, jsonObject.getString("Wrong Code"), Toast.LENGTH_SHORT).show();
                                         }

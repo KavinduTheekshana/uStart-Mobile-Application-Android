@@ -18,6 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ebanx.swipebtn.OnStateChangeListener;
+import com.ebanx.swipebtn.SwipeButton;
 import com.example.ustart.Common.Stables;
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +31,7 @@ public class MainDashboardActivity extends AppCompatActivity {
 
     private CardView ScanQrCode,UserProfile,ProductList,Customers;
     private ImageView main_dashboard_profile_image;
+    private SwipeButton swipeButton;
 
 
     @Override
@@ -42,6 +45,8 @@ public class MainDashboardActivity extends AppCompatActivity {
         UserProfile = (CardView) findViewById(R.id.btnUserProfile);
         ProductList = (CardView) findViewById(R.id.btnProductList);
         Customers = (CardView) findViewById(R.id.btnCustomers);
+
+        swipeButton = findViewById(R.id.swipe_btn);
 
         main_dashboard_profile_image = (ImageView) findViewById(R.id.main_dashboard_profile_image);
 
@@ -124,6 +129,15 @@ public class MainDashboardActivity extends AppCompatActivity {
 
         };
         t.start();
+
+
+//
+//        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
+//            @Override
+//            public void onStateChange(boolean active) {
+//                Toast.makeText(MainDashboardActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 
