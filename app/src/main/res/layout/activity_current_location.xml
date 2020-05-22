@@ -12,6 +12,12 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/currentLocationMap"
+            tools:context=".MapsActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
     </LinearLayout>
 
     <TextView
@@ -28,6 +34,7 @@
     </TextView>
 
     <Button
+        android:id="@+id/getCurrentLocationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"

@@ -72,7 +72,7 @@ public class ScannerActivity extends AppCompatActivity {
                             lat=result.getText().split("-")[3];
                             lng=result.getText().split("-")[4];
 
-
+                            //System.out.println(userID + ":" + dateString + ":" + timeString + ":" + lat + ":" + lng);
 
 
                             progressDialog.show();

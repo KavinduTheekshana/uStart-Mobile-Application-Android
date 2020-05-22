@@ -91,6 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("userType",userObj.getString("user_type"));
                             editor.commit();
 
+                            getApplicationContext().startService(new Intent(getApplicationContext(), ScheduleNotification.class));
+
                             Intent intent = new Intent(LoginActivity.this, MainDashboardActivity.class);
                             startActivity(intent);
 
