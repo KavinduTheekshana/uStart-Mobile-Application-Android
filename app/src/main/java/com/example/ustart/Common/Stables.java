@@ -37,6 +37,17 @@ public class Stables {
         return baseUrl+"api/getProfileDetails"+"?id="+id;
     }
 
+    public String intime(String id,String date,String time){
+        return baseUrl+"api/intime?uid="+id+"&date="+date+"&intime="+time;
+    }
+    public String outTime(String id,String date,String time){
+        return baseUrl+"api/outtime?uid="+id+"&date="+date+"&outtime="+time;
+    }
+
+    public String status(String id,String date){
+        return baseUrl+"api/status?uid="+id+"&date="+date;
+    }
+
     public String getLatAndLng(String id){
         return baseUrl+"api/getlatandlng"+"?id="+id;
     }

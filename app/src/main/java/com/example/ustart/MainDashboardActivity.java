@@ -2,10 +2,13 @@ package com.example.ustart;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,9 +32,11 @@ import java.text.SimpleDateFormat;
 
 public class MainDashboardActivity extends AppCompatActivity {
 
-    private CardView ScanQrCode,UserProfile,ProductList,Customers;
+    private CardView ScanQrCode,UserProfile,ProductList,Customers,onlineround;
     private ImageView main_dashboard_profile_image;
     private SwipeButton swipeButton;
+    TextView tdate,onlinetext;
+    private int status = 0;
 
 
     @Override
@@ -47,6 +52,9 @@ public class MainDashboardActivity extends AppCompatActivity {
         Customers = (CardView) findViewById(R.id.btnCustomers);
 
         swipeButton = findViewById(R.id.swipe_btn);
+        onlineround = findViewById(R.id.onlineround);
+        onlinetext = findViewById(R.id.onlinetext);
+        tdate = (TextView) findViewById(R.id.time);
 
         main_dashboard_profile_image = (ImageView) findViewById(R.id.main_dashboard_profile_image);
 
@@ -77,6 +85,115 @@ public class MainDashboardActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
+        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+
+                if(status==0){
+                    if(active){
+                        sendIntimeData();
+                        status = 1;
+                    }
+                }else {
+                    if(active){
+                        sendOutTimeData();
+                        status = 0;
+                    }
+                }
+
+
+            }
+        });
+
+
+
+        profilePic();
+//        onlineStatus();
+
+
+
+
+        Thread t = new Thread(){
+            @Override
+            public void run(){
+                try {
+                    while (!isInterrupted()){
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                long date = System.currentTimeMillis();
+                                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+                                String dateString = sdf.format(date);
+                                tdate.setText(dateString);
+                            }
+                        });
+                    }
+                }catch (InterruptedException e){
+
+                }
+            }
+
+        };
+        t.start();
+
+
+
+
+
+
+    }
+
+
+    private void onlineStatus() {
+        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdfdate = new SimpleDateFormat("dd/MM/yyyy");
+        final String dateString = sdfdate.format(date);
+        RequestQueue requestQueue= Volley.newRequestQueue(MainDashboardActivity.this);
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().status(sharedPreferences.getString("userid","0"),dateString), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //hide loading
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if (jsonObject.getString("status").equals("1")){
+                        textOnline();
+                        status = 1;
+                    }else  {
+                        textOffline();
+                    }
+
+                    if (response.isEmpty()){
+                        Toast.makeText(MainDashboardActivity.this, "ssfsfsdfsdgdsgf", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //hide loading
+                Intent homeIntent = new Intent(MainDashboardActivity.this,LoginActivity.class);
+                startActivity(homeIntent);
+                finish();
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    private void profilePic() {
         SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         RequestQueue requestQueue= Volley.newRequestQueue(MainDashboardActivity.this);
         StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().getProfileDetails(sharedPreferences.getString("userid","0")), new Response.Listener<String>() {
@@ -102,45 +219,97 @@ public class MainDashboardActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(stringRequest);
+    }
 
-
-
-        Thread t = new Thread(){
+    private void sendIntimeData() {
+        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdftime = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdfdate = new SimpleDateFormat("dd/MM/yyyy");
+        final String timeString = sdftime.format(date);
+        final String dateString = sdfdate.format(date);
+        RequestQueue requestQueue= Volley.newRequestQueue(MainDashboardActivity.this);
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().intime(sharedPreferences.getString("userid","0"),dateString,timeString), new Response.Listener<String>() {
             @Override
-            public void run(){
+            public void onResponse(String response) {
+                //hide loading
                 try {
-                    while (!isInterrupted()){
-                        Thread.sleep(1000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                TextView tdate = (TextView) findViewById(R.id.time);
-                                long date = System.currentTimeMillis();
-                                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-                                String dateString = sdf.format(date);
-                                tdate.setText(dateString);
-                            }
-                        });
-                    }
-                }catch (InterruptedException e){
 
+
+                    if (!response.isEmpty()){
+                        Toast.makeText(MainDashboardActivity.this, "Online", Toast.LENGTH_SHORT).show();
+                        textOnline();
+                    }else {
+                        Toast.makeText(MainDashboardActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
                 }
             }
+        }, new Response.ErrorListener(){
 
-        };
-        t.start();
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //hide loading
+                Intent homeIntent = new Intent(MainDashboardActivity.this,LoginActivity.class);
+                startActivity(homeIntent);
+                finish();
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    private void sendOutTimeData() {
+        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdftime = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdfdate = new SimpleDateFormat("dd/MM/yyyy");
+        final String timeString = sdftime.format(date);
+        final String dateString = sdfdate.format(date);
+        RequestQueue requestQueue= Volley.newRequestQueue(MainDashboardActivity.this);
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().outTime(sharedPreferences.getString("userid","0"),dateString,timeString), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //hide loading
+                try {
 
 
-//
-//        swipeButton.setOnStateChangeListener(new OnStateChangeListener() {
-//            @Override
-//            public void onStateChange(boolean active) {
-//                Toast.makeText(MainDashboardActivity.this, "State: " + active, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+                    if (!response.isEmpty()){
+                        Toast.makeText(MainDashboardActivity.this, "Offline", Toast.LENGTH_SHORT).show();
+                        textOffline();
+                    }else {
+                        Toast.makeText(MainDashboardActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //hide loading
+                Intent homeIntent = new Intent(MainDashboardActivity.this,LoginActivity.class);
+                startActivity(homeIntent);
+                finish();
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
 
 
+    private void textOnline() {
+        onlineround.setCardBackgroundColor(ContextCompat.getColor(this, R.color.card_green));
+        onlinetext.setTextColor(ContextCompat.getColor(this, R.color.card_green));
+        onlinetext.setText("Online");
+        swipeButton.setText("SWAP TO OFFLINE");
+    }
 
+    private void textOffline() {
+        onlineround.setCardBackgroundColor(ContextCompat.getColor(this, R.color.card_orange));
+        onlinetext.setTextColor(ContextCompat.getColor(this, R.color.card_orange));
+        onlinetext.setText("Offline");
+        swipeButton.setText("SWAP TO ONLINE");
     }
 
     private void CustomersActivity() {
