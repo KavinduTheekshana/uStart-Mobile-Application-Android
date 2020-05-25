@@ -44,7 +44,7 @@ public class ScannerActivity extends AppCompatActivity {
     TextView resultData;
     Context mContext;
     ProgressDialog progressDialog;
-    String lat,lng,userID,timeString,dateString,printQR,cusid;
+    String lat,lng,userID,timeString,dateString,printQR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class ScannerActivity extends AppCompatActivity {
                         if(result.getText().contains("-")){
                             dateString=result.getText().split("-")[0];
                             timeString=result.getText().split("-")[1];
-                            cusid=result.getText().split("-")[2];
+                            userID=result.getText().split("-")[2];
                             lat=result.getText().split("-")[3];
                             lng=result.getText().split("-")[4];
 

@@ -37,6 +37,7 @@ public class MainDashboardActivity extends AppCompatActivity {
     private SwipeButton swipeButton;
     TextView tdate,onlinetext;
     private int status = 0;
+    private int statusAlready = 0;
 
 
     @Override
@@ -94,17 +95,23 @@ public class MainDashboardActivity extends AppCompatActivity {
             @Override
             public void onStateChange(boolean active) {
 
-                if(status==0){
-                    if(active){
-                        sendIntimeData();
-                        status = 1;
+                if (statusAlready == 0){
+                    if(status==0){
+                        if(active){
+                            sendIntimeData();
+                            status = 1;
+                        }
+                    }else {
+                        if(active){
+                            sendOutTimeData();
+                            status = 0;
+                            statusAlready = 1;
+                        }
                     }
                 }else {
-                    if(active){
-                        sendOutTimeData();
-                        status = 0;
-                    }
+                    Toast.makeText(MainDashboardActivity.this, "You Can't Mark Attendance Again in Today", Toast.LENGTH_SHORT).show();
                 }
+                
 
 
             }
@@ -113,7 +120,7 @@ public class MainDashboardActivity extends AppCompatActivity {
 
 
         profilePic();
-//        onlineStatus();
+        onlineStatus();
 
 
 
@@ -164,15 +171,9 @@ public class MainDashboardActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     if (jsonObject.getString("status").equals("1")){
-                        textOnline();
-                        status = 1;
-                    }else  {
-                        textOffline();
+                        statusAlready = 1;
                     }
 
-                    if (response.isEmpty()){
-                        Toast.makeText(MainDashboardActivity.this, "ssfsfsdfsdgdsgf", Toast.LENGTH_SHORT).show();
-                    }
 
 
 

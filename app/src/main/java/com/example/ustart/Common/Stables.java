@@ -164,6 +164,29 @@ public class Stables {
         return url;
     }
 
+    public String SaveLatLng(String userID, String lat, String lng){
+        String url="";
+        try {
+            url=baseUrl+"api/savelatlng?"+"userid="+userID+"&lat="+URLEncoder.encode(lat,"utf-8")+"&lng="+URLEncoder.encode(lng,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+
+    public String CurrentLocation(String userID){
+        String url="";
+        try {
+            url=baseUrl+"api/currentlocation?"+"uid="+userID;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+
+
     public ProgressDialog showLoading(Context context){
         final ProgressDialog dialog=new ProgressDialog(context);
         dialog.setTitle("Loading");
